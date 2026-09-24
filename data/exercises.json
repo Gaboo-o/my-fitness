@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Push-Ups",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 2,
+    "name": "Squats",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 3,
+    "name": "Treadmill Run",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Full Body"
+  }
+]

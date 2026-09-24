@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+main {
+    padding: 20px;
+}
+
+button {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#exerciseList > div {
+    border: 1px solid #ccc;
+    margin-top: 12px;
+    padding: 12px;
+}

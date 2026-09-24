@@ -1,0 +1,138 @@
+TEAM SETUP AND DEVELOPMENT GUIDE
+
+1. Clone the Repository
+-----------------------
+Choose a folder on your computer where you keep coding projects.
+
+Open a terminal in that folder and run:
+
+    git clone https://github.com/Gaboo-o/my-fitness.git
+
+Then move into the project folder:
+
+    cd my-fitness
+
+2. Project Structure
+--------------------
+The project is organized approximately like this:
+
+    my-fitness/
+    |
+    |-- src/
+    |   |--backend/
+    |   |   |-- app.py
+    |   |   `-- requirements.txt
+    |   `-- frontend/
+    |       |-- index.html
+    |       |-- css/
+    |       |   `-- styles.css
+    |       `-- js/
+    |           `-- app.js
+    |
+    |-- data/
+    |   `-- exercises.json
+    |
+    |-- docs/
+    |-- tests/
+    |-- .gitignore
+    `-- README.md
+
+3. Create and Activate a Python Virtual Environment
+--------------------------------------
+Windows:
+
+    python -m venv .venv
+    .venv\Scripts\Activate.ps1
+
+macOS/Linux:
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+
+4. Install Backend Dependencies
+-------------------------------
+    pip install -r backend/requirements.txt
+
+5. Run the Application
+----------------------
+From the project root:
+
+Windows:
+
+    python src/backend/app.py
+
+macOS/Linux:
+
+    python3 src/backend/app.py
+
+6. Before Starting New Work
+---------------------------
+Always update your local copy before creating a new branch:
+
+    git checkout main
+    git pull origin main
+
+7. Create a Branch for Your Task
+--------------------------------
+Create a new branch for each GitHub issue or task.
+
+Examples:
+
+    git checkout -b feature/exercise-library
+
+    git checkout -b feature/workout-filter
+
+    git checkout -b fix/login-validation
+
+    git checkout -b docs/architecture-diagram
+
+Recommended naming:
+
+    feature/<short-name>
+    fix/<short-name>
+    docs/<short-name>
+
+
+9. Check Your Changes
+----------------------
+Before committing, run:
+
+    git status
+
+10. Commit Your Changes
+-----------------------
+Stage the files you want to include and commit them:
+
+    git add .
+    git commit -m "Implement exercise library"
+
+11. Push Your Branch to GitHub
+------------------------------
+The first time you push a new branch:
+
+    git push -u origin <branch-name>
+
+After that, future pushes same branch can use:
+
+    git push
+
+12. Create a Pull Request
+-------------------------
+After pushing your branch:
+
+1. Open the repository on GitHub.
+2. Create a Pull Request from your branch into main.
+3. Describe what was changed.
+4. Link the related GitHub Issue if applicable.
+5. Merge into main.
+
+13. After Your Pull Request Is Merged
+-------------------------------------
+Update your local main branch:
+
+    git checkout main
+    git pull origin main
+
+Then delete your old local branch if it is no longer needed:
+
+    git branch -d <branch-name>

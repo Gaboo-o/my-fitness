@@ -1,29 +1,29 @@
-# Project Name
+# MyFitness
 
-CS 160 Software Engineering
+Fitness web application prototype for CS 160 Software Engineering
 
 ## Team #1: Team Name
 
 | Name | GitHub |
 |---|---|
-| Gabriel Valle | @username |
-| Noah Park | @username |
-| Hari Sowmith Reddy Vedanaparthi | @username |
-| Name | @username |
+| Gabriel Valle | Gaboo-o |
+| Noah Park | noahbpark |
+| Hari Sowmith Reddy Vedanaparthi | CaffeineNinja13 |
+| Thanh Nguyen | Tofuu2212 |
 
-## About
+## Technologies
 
-About goes here
+- HTML
+- CSS
+- JavaScript
+- Python
+- Flask
+- JSON
 
-## Main Features
+## Project Structure
 
-- Feature 1
-- Feature 2
-- Feature 3
-- Feature 4
-- Feature 5
-
-## Technology
-
-- Frontend:
-- Backend:
+- `src/frontend/` - User interface
+- `src/backend/` - Python/Flask backend
+- `data/` - JSON application data
+- `tests/` - Tests
+- `docs/` - Project documentation
