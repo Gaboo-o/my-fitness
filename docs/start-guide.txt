@@ -78,35 +78,24 @@ Create a new branch for each GitHub issue or task.
 
 Examples:
 
-    git checkout -b feature/exercise-library
+    git checkout feature/<short-name>
+    git checkout fix/<short-name>
+    git checkout docs/<short-name>
 
-    git checkout -b feature/workout-filter
-
-    git checkout -b fix/login-validation
-
-    git checkout -b docs/architecture-diagram
-
-Recommended naming:
-
-    feature/<short-name>
-    fix/<short-name>
-    docs/<short-name>
-
-
-9. Check Your Changes
+8. Check Your Changes
 ----------------------
 Before committing, run:
 
     git status
 
-10. Commit Your Changes
+9. Commit Your Changes
 -----------------------
 Stage the files you want to include and commit them:
 
     git add .
     git commit -m "Implement exercise library"
 
-11. Push Your Branch to GitHub
+10. Push Your Branch to GitHub
 ------------------------------
 The first time you push a new branch:
 
@@ -116,7 +105,7 @@ After that, future pushes same branch can use:
 
     git push
 
-12. Create a Pull Request
+11. Create a Pull Request
 -------------------------
 After pushing your branch:
 
@@ -126,7 +115,7 @@ After pushing your branch:
 4. Link the related GitHub Issue if applicable.
 5. Merge into main.
 
-13. After Your Pull Request Is Merged
+12. After Your Pull Request Is Merged
 -------------------------------------
 Update your local main branch:
 
