@@ -38,6 +38,29 @@
         </button>
 
         <div id="exerciseList"></div>
+
+        <hr>
+        <section>
+            <h2>Pick a Workout for Me</h2>
+
+            <label for="workoutType">Type:</label>
+            <select id="workoutType"> 
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+            </select>
+
+            <label for="workoutLocation">Location:</label>
+            <select id="workoutLocation">
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+            </select>
+
+            <button id="pickWorkout">
+                Pick a Workout for Me
+            </button>
+
+            <div id="workoutResults"></div>
+        </section>
     </main>
 
     <script src="/js/app.js"></script>
