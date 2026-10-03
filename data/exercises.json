@@ -8,16 +8,387 @@
   },
   {
     "id": 2,
-    "name": "Squats",
+    "name": "Incline Push-Ups",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 3,
+    "name": "Diamond Push-Ups",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 4,
+    "name": "Bodyweight Squats",
     "type": "Strength",
     "location": "Home",
     "muscleGroup": "Legs"
   },
   {
-    "id": 3,
+    "id": 5,
+    "name": "Lunges",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 6,
+    "name": "Reverse Lunges",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 7,
+    "name": "Wall Sit",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 8,
+    "name": "Glute Bridges",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Glutes"
+  },
+  {
+    "id": 9,
+    "name": "Single-Leg Glute Bridge",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Glutes"
+  },
+  {
+    "id": 10,
+    "name": "Calf Raises",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Calves"
+  },
+  {
+    "id": 11,
+    "name": "Plank",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 12,
+    "name": "Side Plank",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 13,
+    "name": "Sit-Ups",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 14,
+    "name": "Bicycle Crunches",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 15,
+    "name": "Russian Twists",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 16,
+    "name": "Superman",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 17,
+    "name": "Bird Dog",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 18,
+    "name": "Chair Dips",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 19,
+    "name": "Jumping Jacks",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 20,
+    "name": "High Knees",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 21,
+    "name": "Mountain Climbers",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 22,
+    "name": "Burpees",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 23,
+    "name": "Jump Rope",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 24,
+    "name": "Running in Place",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 25,
+    "name": "Bench Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 26,
+    "name": "Incline Dumbbell Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 27,
+    "name": "Cable Chest Fly",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 28,
+    "name": "Chest Press Machine",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 29,
+    "name": "Lat Pulldown",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 30,
+    "name": "Seated Cable Row",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 31,
+    "name": "Dumbbell Row",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 32,
+    "name": "Deadlift",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 33,
+    "name": "Pull-Ups",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 34,
+    "name": "Shoulder Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Shoulders"
+  },
+  {
+    "id": 35,
+    "name": "Lateral Raises",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Shoulders"
+  },
+  {
+    "id": 36,
+    "name": "Front Raises",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Shoulders"
+  },
+  {
+    "id": 37,
+    "name": "Rear Delt Fly",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Shoulders"
+  },
+  {
+    "id": 38,
+    "name": "Bicep Curls",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 39,
+    "name": "Hammer Curls",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 40,
+    "name": "Tricep Pushdown",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 41,
+    "name": "Skull Crushers",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 42,
+    "name": "Barbell Squat",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 43,
+    "name": "Leg Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 44,
+    "name": "Leg Extension",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 45,
+    "name": "Hamstring Curl",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 46,
+    "name": "Walking Lunges",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 47,
+    "name": "Standing Calf Raise",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Calves"
+  },
+  {
+    "id": 48,
+    "name": "Hip Thrust",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Glutes"
+  },
+  {
+    "id": 49,
+    "name": "Cable Crunch",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 50,
+    "name": "Hanging Leg Raise",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 51,
     "name": "Treadmill Run",
     "type": "Cardio",
     "location": "Gym",
     "muscleGroup": "Full Body"
+  },
+  {
+    "id": 52,
+    "name": "Treadmill Walk",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 53,
+    "name": "Stationary Bike",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 54,
+    "name": "Elliptical",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 55,
+    "name": "Rowing Machine",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 56,
+    "name": "Stair Climber",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Legs"
   }
 ]
