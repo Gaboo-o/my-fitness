@@ -1,8 +1,8 @@
-# MyFitness
+# myFitness
 
 Fitness web application prototype for CS 160 Software Engineering
 
-## Team #1: Team Name
+## Team #1: ActiveHub
 
 | Name | GitHub |
 |---|---|
