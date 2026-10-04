@@ -19,5 +19,159 @@
     "type": "Cardio",
     "location": "Gym",
     "muscleGroup": "Full Body"
+     },
+  {
+    "id": 4,
+    "name": "Bench Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Chest"
+  },
+  {
+    "id": 5,
+    "name": "Pull-Ups",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 6,
+    "name": "Dumbbell Shoulder Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Shoulders"
+  },
+  {
+    "id": 7,
+    "name": "Tricep Dips",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 8,
+    "name": "Bicep Curls",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Arms"
+  },
+  {
+    "id": 9,
+    "name": "Resistance Band Rows",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Back"
+  },
+  {
+    "id": 10,
+    "name": "Barbell Back Squats",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 11,
+    "name": "Walking Lunges",
+    "type": "Strength",
+    "location": "Outdoor",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 12,
+    "name": "Leg Press",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 13,
+    "name": "Calf Raises",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 14,
+    "name": "Romanian Deadlifts",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 15,
+    "name": "Glute Bridges",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 16,
+    "name": "Plank",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 17,
+    "name": "Crunches",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 18,
+    "name": "Russian Twists",
+    "type": "Strength",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 19,
+    "name": "Cable Woodchoppers",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 20,
+    "name": "Hanging Leg Raises",
+    "type": "Strength",
+    "location": "Gym",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 21,
+    "name": "Mountain Climbers",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Core"
+  },
+  {
+    "id": 22,
+    "name": "Burpees",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 23,
+    "name": "Jumping Jacks",
+    "type": "Cardio",
+    "location": "Home",
+    "muscleGroup": "Full Body"
+  },
+  {
+    "id": 24,
+    "name": "400m Sprint",
+    "type": "Cardio",
+    "location": "Outdoor",
+    "muscleGroup": "Legs"
+  },
+  {
+    "id": 25,
+    "name": "Rowing Machine",
+    "type": "Cardio",
+    "location": "Gym",
+    "muscleGroup": "Full Body"
   }
 ]

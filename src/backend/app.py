@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from pathlib import Path
 import json
 
@@ -30,7 +30,26 @@ def get_exercises():
     with open(exercise_file, "r", encoding="utf-8") as file:
         exercises = json.load(file)
 
+        # Get the filter parameters
+        workout_type = request.args.get("type")
+        location = request.args.get("location")
+
+        # Apply type filter
+        if workout_type:
+            exercises = [
+                ex for ex in exercises 
+                if ex.get("type", "").lower() == workout_type.lower()
+            ]
+
+        # Apply Location filter
+        if location:
+            exercises = [
+                ex for ex in exercises 
+                if location.lower() in str(ex.get("location", "")).lower() or str(ex.get("location", "")).lower() == "any"
+            ]
+
     return jsonify(exercises)
+
 
 
 if __name__ == "__main__":
