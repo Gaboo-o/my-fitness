@@ -1,0 +1,635 @@
+\documentclass[11pt]{article}
+
+% -----------------------------
+% Packages
+% -----------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{setspace}
+
+\setstretch{1.05}
+
+% Remove paragraph indentation
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+% -----------------------------
+% Document
+% -----------------------------
+\begin{document}
+
+% =========================================================
+% TITLE PAGE
+% =========================================================
+
+\begin{titlepage}
+    \centering
+
+    \vspace*{1.5in}
+
+    {\Huge \textbf{myFitness}}\\[0.5cm]
+    {\Large Sprint 1 Report}\\[1.5cm]
+
+    {\large CS 160 -- Software Engineering}\\
+    {\large Fall 2026}\\
+    {\large San Jose State University}\\[1.5cm]
+
+    \textbf{Team Name:} ActiveHub\\
+    \textbf{Team \#:} 1\\[1.5cm]
+
+    \vfill
+
+    \textbf{Instructor:} Dominic Abucejo\\
+    \textbf{Date:} \today
+
+\end{titlepage}
+
+% =========================================================
+% TABLE OF CONTENTS
+% =========================================================
+
+\tableofcontents
+\newpage
+
+% =========================================================
+% 1. GIT ACCOUNT PROFILE MEMBER LIST
+% =========================================================
+
+\section{Git Account Profile Member List}
+
+Table \ref{tab:github-members} lists each team member and the GitHub
+account used for the project.
+
+\begin{table}[H]
+    \centering
+    \caption{Team Member GitHub Accounts}
+    \label{tab:github-members}
+
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Team Member} &
+        \textbf{GitHub Username} &
+        \textbf{Profile} \\
+        \midrule
+
+        Gabriel Valle &
+        @Gaboo-o &
+        \href{https://github.com/Gaboo-o}{github.com/Gaboo-o} \\
+
+        Hari Sowmith Reddy Vedanaparthi &
+        @CaffeineNinja13 &
+        \href{https://github.com/CaffeineNinja13}{github.com/CaffeineNinja13} \\
+
+        Thanh Nguyen &
+        @Tofuu2212 &
+        \href{https://github.com/Tofuu2212}{github.com/Tofuu2212} \\
+
+        Noah Park &
+        @noahbpark &
+        \href{https://github.com/noahbpark}{github.com/noahbpark} \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% =========================================================
+% 2. SURVEY REPORT
+% =========================================================
+
+\section{Survey Report}
+
+\subsection{Survey Overview}
+
+The purpose of this survey was to gather feedback from potential users regarding the planned features and functionality of the  myFitness application. The survey was designed to identify common difficulties users experience when exercising and to determine which proposed features are considered useful. 
+
+A total of nine participants from a combined four groups completed the survey.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q1.png}
+    \caption{Group Distribution}
+\end{figure}
+
+% ---------------------------------------------------------
+% QUESTION 1
+% ---------------------------------------------------------
+
+\subsection{Question 1: Exercise Frequency}
+
+\textbf{Survey Question:}
+
+How often do you exercise in a typical week?
+
+\subsubsection*{Response Statistics}
+
+Five respondents (55.6\%) reported exercising 3–4 days per week. Three respondents (33.3\%) reported exercising 1–2 days per week, while one respondent (11.1\%) reported never exercising. No respondents reported exercising 5 or more days per week.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q2.png}
+    \caption{Weekly Exercise Frequency}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Most participants are at least moderately familiar with exercising, although the survey population does not consist primarily of highly frequent exercisers.
+
+% ---------------------------------------------------------
+% QUESTION 2
+% ---------------------------------------------------------
+
+\subsection{Question 2: Difficulties When Deciding to Work Out}
+
+\textbf{Survey Question:}
+
+What is your biggest difficulty when deciding whether to work out?
+
+\subsubsection*{Response Statistics}
+
+Four respondents (44.4\%) indicated that not having enough time was their biggest difficulty. Two respondents (22.2\%) selected lack of motivation. One respondent (11.1\%) indicated that they did not know what workout to do, one respondent (11.1\%) reported not having the right equipment, and one respondent (11.1\%) identified the distance to a gym or convenience as a difficulty.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q3.png}
+    \caption{Primary Difficulties When Deciding to Work Out}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Lack of time was the most common difficulty among respondents, accounting for nearly half of all responses. These results support the inclusion of the ``Pick a Workout for Me'' feature because it can reduce the amount of time users spend deciding what exercises to perform. Workout filtering by location and available workout conditions may also help users quickly find an appropriate workout.
+
+% ---------------------------------------------------------
+% QUESTION 3
+% ---------------------------------------------------------
+
+\subsection{Question 3: Usefulness of Proposed Features}
+
+\textbf{Survey Question:}
+
+Rate how useful each of the following features would be in a workout app.
+
+\subsubsection*{Response Statistics}
+
+The Exercise Library received the strongest overall response among the four features evaluated. Six respondents rated the Exercise Library either a 4 or a 5 on the usefulness scale.
+
+The ``Pick a Workout for Me'' feature also received generally positive feedback. Three respondents rated it as very useful, while three respondents rated it as somewhat useful.
+
+The Personal Profile feature received mixed feedback. Five respondents rated the feature either a 4 or a 5, while the remaining respondents gave it lower ratings.
+
+Sign up/login received the weakest response. Four respondents rated sign up/login as a 1, indicating that account authentication itself was not viewed as one of the most useful functions of the application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{q4.png}
+    \caption{Usefulness Ratings for Proposed Features}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results suggest that respondents value functionality that directly helps them exercise more than account-management functionality. The Exercise Library and workout recommendation feature provide immediate value to the user and will be considered core features of the prototype. A Personal Profile will also be retained but will be kept relatively simple. Sign up/login will receive lower development priority due to less interest.
+
+% ---------------------------------------------------------
+% QUESTION 4
+% ---------------------------------------------------------
+
+\subsection{Question 4: Workout Recommendation Usage}
+
+\textbf{Survey Question:}
+
+How often would you use a ``Pick a Workout for Me'' feature?
+
+\subsubsection*{Response Statistics}
+
+Four respondents (44.4\%) indicated that they would use the feature sometimes. Three respondents (33.3\%) indicated that they would use it often, while two respondents (22.2\%) indicated that they would rarely use it. No respondents selected ``Never.''
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q5.png}
+    \caption{Expected Usage of the Pick a Workout for Me Feature}
+\end{figure}
+
+\textbf{Interpretation:}
+
+A combined 77.8\% of respondents indicated that they would use the feature either sometimes or often. Although respondents did not indicate that they would rely on the recommendation feature for every workout, there was clear interest in having the application assist with workout selection.
+
+% ---------------------------------------------------------
+% QUESTION 5
+% ---------------------------------------------------------
+
+\subsection{Question 5: Workout Recommendation Criteria}
+
+\textbf{Survey Question:}
+
+Which information should the app use when choosing a workout for you?
+
+\subsubsection*{Response Statistics}
+
+Muscle group was the most commonly selected option, chosen by eight respondents (88.9\%). Available workout time and fitness level were each selected by seven respondents (77.8\%). Location and available equipment were each selected by six respondents (66.7\%). Fitness goal and workout type were each selected by four respondents (44.4\%). Previous workout history was selected by only one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q6.png}
+    \caption{Preferred Information for Workout Recommendations}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Respondents preferred recommendations based on information that directly affects the workout they can perform at that moment. Muscle group, available time, fitness level, location, and equipment received the strongest support. Previous workout history received considerably less interest.
+
+\textbf{Impact on Product:}
+
+The prototype will use a limited number of criteria when selecting workouts. Workout type and location will be included as planned, while muscle group and available workout time are strong candidates for additional filtering if development time permits. Previous workout history does not need to influence workout generation during the initial prototype.
+
+% ---------------------------------------------------------
+% QUESTION 6
+% ---------------------------------------------------------
+
+\subsection{Question 6: Personal Fitness Profile Information}
+
+\textbf{Survey Question:}
+
+Which information should be included in a user's fitness profile?
+
+\subsubsection*{Response Statistics}
+
+Weight was selected by all nine respondents (100\%). Fitness level was selected by eight respondents (88.9\%). Height and fitness goals were each selected by seven respondents (77.8\%). Age was selected by six respondents (66.7\%), gender was selected by five respondents (55.6\%), and available equipment was selected by four respondents (44.4\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q7.png}
+    \caption{Preferred Information for a User Fitness Profile}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results indicate that respondents are most interested in storing information that is directly related to their physical characteristics, fitness level, and fitness goals.
+
+% ---------------------------------------------------------
+% QUESTION 7
+% ---------------------------------------------------------
+
+\subsection{Question 7: Exercise Library Content}
+
+\textbf{Survey Question:}
+
+What should each exercise in the exercise library include?
+
+\subsubsection*{Response Statistics}
+
+Video demonstrations were selected by all nine respondents (100\%). Alternative exercises were selected by eight respondents (88.9\%). Difficulty level and common mistakes were each selected by six respondents (66.7\%). Images were selected by five respondents (55.6\%), while written instructions were selected by four respondents (44.4\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q8.png}
+    \caption{Preferred Exercise Library Information}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results show a strong preference for visual and practical exercise guidance. The Exercise Library will include essential exercise information such as the exercise name, muscle group, workout type, location, and difficulty level. Video demonstrations are strongly supported by the survey, but because this is a prototype, the application may provide links to existing demonstration videos rather than storing or producing original video content. Alternative exercises may be added if time permits.
+
+% ---------------------------------------------------------
+% QUESTION 8
+% ---------------------------------------------------------
+
+\subsection{Question 8: Workout Tracking Tools}
+
+\textbf{Survey Question:}
+
+Which workout tracking tools would you use?
+
+\subsubsection*{Response Statistics}
+
+The Workout Timer and Workout History were each selected by seven respondents (77.8\%). Weekly/monthly progress was selected by six respondents (66.7\%). Weight tracking was selected by four respondents (44.4\%). The Rest Timer and BMI Calculator were each selected by three respondents (33.3\%). A distance recorder for running was selected by only one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q9.png}
+    \caption{Preferred Workout Tracking Tools}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Respondents showed the greatest interest in features that help them perform workouts and review previous activity. The Workout Timer and Workout History/Progress Tracking features will be prioritized.
+
+% ---------------------------------------------------------
+% QUESTION 9
+% ---------------------------------------------------------
+
+\subsection{Question 9: Motivational Features}
+
+\textbf{Survey Question:}
+
+Which motivational feature would encourage you to exercise the most?
+
+\subsubsection*{Response Statistics}
+
+Personal records were selected by five respondents (55.6\%), making them the most popular motivational feature. Workout milestones were selected by two respondents (22.2\%). Workout streaks and achievement badges were each selected by one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q10.png}
+    \caption{Preferred Motivational Features}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results indicate that respondents are more interested in seeing measurable personal improvement than in receiving virtual rewards. Personal records received considerably more support than achievement badges or workout streaks.
+
+% =========================================================
+% FEATURE ANALYSIS
+% =========================================================
+
+\subsection{Survey-Based Feature Decisions}
+
+\subsubsection{Original Proposed Features}
+
+The originally proposed feature set consisted of the following:
+
+\begin{enumerate}
+    \item Sign up / login
+    \item Personal profile
+    \item Pick a workout for me
+    \item Exercise library
+    \item Workout type / location filter
+    \item Workout / rest timer
+    \item Workout history / progress tracking
+    \item Weight / BMI tracking
+    \item Achievement badges / milestones
+    \item Custom workout creation
+\end{enumerate}
+
+% =========================================================
+% FINAL FEATURES
+% =========================================================
+
+\subsubsection{Final Committed Features}
+
+Based on the survey results and the scope of the semester prototype, the team selected the following features for implementation:
+
+\begin{enumerate}
+    \item \textbf{Exercise Library} -- strongly supported by the feature-rating results and provides the data foundation for other parts of the application.
+    \item \textbf{Workout Type / Location Filtering} -- helps make workout recommendations practical for users in different environments.
+    \item \textbf{Pick a Workout for Me} -- App differential; supported by 77.8\% of respondents indicating that they would use it sometimes or often.
+    \item \textbf{Workout / Rest Timer} -- Workout Timer selected by 77.8\% of respondents as a tracking tool they would use; Rest timer would be trivial once Workout Timer is implemented.
+    \item \textbf{Personal Profile} -- supported particularly by strong interest in weight, fitness level, fitness goals, and height.
+    \item \textbf{Workout History} -- workout history received 77.8\% support and weekly/monthly progress received 66.7\%.
+\end{enumerate}
+
+\subsubsection{Stretch and Future Features}
+
+The following features may be implemented if development time permits
+or may be considered for a future version of the application:
+
+\begin{itemize}
+    \item Weight / BMI tracking
+    \item Achievement badges / milestones
+    \item Custom workout creation
+\end{itemize}
+
+\newpage
+
+% =========================================================
+% 3. HIGH-LEVEL ARCHITECTURAL BLOCK DIAGRAM
+% =========================================================
+
+\section{High-Level Architectural Block Diagram}
+
+The myFitness prototype follows a simple web application architecture. The frontend is implemented using HTML, CSS, and JavaScript and runs in the user's web browser. The frontend communicates with a Python Flask backend using HTTP requests and JSON responses.
+
+The Flask backend handles application logic, including exercise retrieval, filtering, and workout generation. Application data is stored in JSON files because the project is intended to be a prototype and does not require a full database management system.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]
+    {block-diagram.png}
+    \caption{High-Level Architectural Block Diagram}
+\end{figure}
+
+\textbf{Technologies Used:}
+
+\begin{itemize}
+    \item \textbf{Frontend:} HTML, CSS, JavaScript
+    \item \textbf{Backend:} Python, Flask
+    \item \textbf{Data Storage:} JSON files
+    \item \textbf{Version Control:} Git and GitHub
+\end{itemize}
+
+\newpage
+
+% =========================================================
+% 4. COMPNENT DIAGRAM
+% =========================================================
+
+\section{Component Diagram}
+
+The component diagram describes the primary software objects and their relationships in the myFitness application. The design is intentionally kept small because the final application is a prototype.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]
+    {component-diagram.png}
+    \caption{myFitness Class Diagram}
+\end{figure}
+
+\newpage
+
+% =========================================================
+% 5. SEQUENCE DIAGRAMS
+% =========================================================
+
+\section{Sequence Diagrams}
+
+The sequence diagrams below describe the interaction between the user, frontend, Flask backend, application services, and JSON storage for the features selected for Sprint 1.
+
+% ---------------------------------------------------------
+% Exercise Library
+% ---------------------------------------------------------
+
+\subsection{Exercise Library}
+
+The Exercise Library allows the user to request and view the available exercise information. The JavaScript frontend sends a request to the Flask backend, which retrieves exercise information from the JSON data source and returns the results to the browser.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]
+    {exercise-library.png}
+    \caption{Exercise Library Sequence Diagram}
+\end{figure}
+
+% ---------------------------------------------------------
+% Workout Filter
+% ---------------------------------------------------------
+
+\subsection{Workout Type and Location Filter}
+
+The filter feature allows users to narrow the available exercises based on workout type and location. The frontend sends the selected criteria to the backend, which filters the available exercise data and returns only the matching exercises.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]
+    {workout-filter.png}
+    \caption{Workout Type and Location Filter Sequence Diagram}
+\end{figure}
+
+% ---------------------------------------------------------
+% Pick Workout
+% ---------------------------------------------------------
+
+\subsection{Pick a Workout for Me}
+
+The ``Pick a Workout for Me'' feature uses user-selected preferences to identify appropriate exercises. The Flask backend obtains matching exercise data and selects a set of exercises to form the recommended workout.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]
+    {pick-workout.png}
+    \caption{Pick a Workout for Me Sequence Diagram}
+\end{figure}
+
+\newpage
+
+% =========================================================
+% 6. GIT SOURCE CODE LINKS
+% =========================================================
+
+\section{Git Source Code}
+
+The project source code is maintained in a shared GitHub repository. Team members use individual branches for development and merge completed work through GitHub.
+
+\begin{table}[H]
+    \centering
+    \caption{GitHub Project Links}
+
+    \begin{tabular}{p{4cm} p{9cm}}
+        \toprule
+        \textbf{Resource} & \textbf{Link} \\
+        \midrule
+
+        Source Code Repository &
+        \href{https://github.com/Gaboo-o/my-fitness}
+        {GitHub Repository} \\
+
+        GitHub Project Board &
+        \href{https://github.com/users/Gaboo-o/projects/2}
+        {Project Board} \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% =========================================================
+% 7. BACKLOG AND SPRINT LOG LINKS
+% =========================================================
+
+\section{Backlog and Sprint Log Spreadsheets}
+
+The product backlog contains the complete list of planned tasks for the myFitness project. Individual sprint tabs identify which tasks are selected for each sprint, the team member responsible for each task, estimated work hours, assignment dates, and completion dates.
+
+\begin{table}[H]
+    \centering
+    \caption{Project Management Spreadsheet Links}
+
+    \begin{tabular}{p{5cm} p{8cm}}
+        \toprule
+        \textbf{Spreadsheet} & \textbf{Link} \\
+        \midrule
+
+        Product Backlog &
+        \href{YOUR-PRODUCT-BACKLOG-URL}
+        {Product Backlog Spreadsheet} \\
+
+        Sprint Backlog / Sprint Logs &
+        \href{YOUR-SPRINT-LOG-URL}
+        {Sprint Tracking Spreadsheet} \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The product backlog is intended to remain a live document throughout
+the semester. New tasks may be added, priorities may change, and
+unfinished tasks may be moved into later sprints as development
+continues.
+
+\newpage
+
+% =========================================================
+% 8. SPRINT 1 SUMMARY
+% =========================================================
+
+\section{Sprint 1 Summary}
+
+The primary goal of Sprint 1 was to establish the initial architecture and development foundation for the myFitness application. During the sprint, the team focused on defining the prototype scope, organizing the project repository, creating the required software design documentation, and beginning implementation of the application's core workout-selection features.
+
+The team created a shared GitHub repository and established an initial frontend/backend directory structure. The planned technology stack consists of HTML, CSS, and JavaScript for the frontend, Python and Flask for the backend, and JSON files for lightweight data storage.
+
+The Sprint 1 design work included the high-level architectural block diagram, component/class documentation, and sequence diagrams for the Exercise Library, Workout Type/Location Filter, and ``Pick a Workout for Me'' features. These diagrams provided a clearer understanding of how the frontend, backend, and data components will interact.
+
+The team also reviewed the feature survey results. The feedback helped reduce the project scope and prioritize functionality that users considered most useful. In particular, the Exercise Library, workout recommendation functionality, workout filtering, workout timer, and workout tracking features received stronger support than several of the originally proposed secondary features.
+
+During development, the team began constructing the initial web application structure and preparing the exercise data that will support the Exercise Library and workout recommendation system.
+
+\newpage
+
+% =========================================================
+% 9. PLANS FOR NEXT SPRINT
+% =========================================================
+
+\section{Plans for Sprint 2}
+
+The goal of Sprint 2 is to extend the initial workout-selection prototype by adding user-specific functionality and the ability to record completed workouts.
+
+The planned Sprint 2 features are:
+
+\begin{enumerate}
+
+    \item \textbf{Basic Sign Up and Login}
+
+    Implement simple user authentication sufficient for the prototype. The implementation will remain lightweight because authentication received lower priority in the survey.
+
+    \item \textbf{Personal Fitness Profile}
+
+    Allow users to store basic fitness information such as height, weight, fitness level, and fitness goals.
+
+    \item \textbf{Workout Timer}
+
+    Implement a countdown or elapsed-time feature that users can use while performing workouts.
+
+    \item \textbf{Workout Completion}
+
+    Allow users to mark a workout as completed.
+
+    \item \textbf{Workout History}
+
+    Store completed workouts and allow users to review previous workouts.
+
+    \item \textbf{Basic Progress Tracking}
+
+    Use workout-history information to display simple progress information to the user.
+
+\end{enumerate}
+
+Sprint 2 will continue to use the same frontend/backend architecture established during Sprint 1. Development will focus on producing a working product increment rather than adding additional optional features.
+
+Lower-priority features such as achievement badges, BMI calculations, advanced progress analytics, and custom workout creation will remain in the product backlog until the core application functionality has been completed and tested.
+
+% =========================================================
+% END
+% =========================================================
+
+\end{document}
