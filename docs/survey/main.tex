@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+
+% -----------------------------
+% Packages
+% -----------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{setspace}
+
+\setstretch{1.05}
+
+% Remove paragraph indentation
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+% -----------------------------
+% Document
+% -----------------------------
+\begin{document}
+
+% =========================================================
+% TITLE PAGE
+% =========================================================
+
+\begin{titlepage}
+    \centering
+
+    \vspace*{1.5in}
+
+    {\Huge \textbf{myFitness}}\\[0.5cm]
+    {\Large Survey Report}\\[1.5cm]
+
+    {\large CS 160 -- Software Engineering}\\
+    {\large Fall 2026}\\
+    {\large San Jose State University}\\[1.5cm]
+
+    \textbf{Team Name:} ActiveHub\\
+    \textbf{Team \#:} 1\\[1.5cm]
+
+    \textbf{Team Members}\\[0.5cm]
+
+    \begin{tabular}{ll}
+        \toprule
+        Name & GitHub Username \\
+        \midrule
+        Gabriel Valle & Gaboo-o \\
+        Noah Park & noahbpark \\
+        Hari Sowmith Reddy Vedanaparthi & CaffeineNinja13 \\
+        Thanh Nguyen & Tofuu2212 \\
+        \bottomrule
+    \end{tabular}
+
+    \vfill
+
+    \textbf{Instructor:} Dominic Abucejo\\
+    \textbf{Date:} \today
+
+\end{titlepage}
+
+% =========================================================
+% TABLE OF CONTENTS
+% =========================================================
+
+\tableofcontents
+\newpage
+
+% =========================================================
+% 1. SURVEY OVERVIEW
+% =========================================================
+
+\section{Survey Overview}
+
+The purpose of this survey was to gather feedback from potential users regarding the planned features and functionality of the  myFitness application. The survey was designed to identify common difficulties users experience when exercising and to determine which proposed features are considered useful. 
+
+A total of nine participants from a combined four groups completed the survey.
+
+% =========================================================
+% 2. SURVEY RESULTS
+% =========================================================
+
+\section{Survey Results}
+
+Of the nine respondents, three were from Team 2, three were from Team 3, two were from Team 4, and one was from Team 5. This corresponds to 33.3\%, 33.3\%, 22.2\%, and 11.1\% of respondents, respectively.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q1.png}
+    \caption{Group Distribution}
+\end{figure}
+
+% ---------------------------------------------------------
+% QUESTION 1
+% ---------------------------------------------------------
+
+\subsection{Question 1: Exercise Frequency}
+
+\textbf{Survey Question:}
+
+How often do you exercise in a typical week?
+
+\subsubsection*{Response Statistics}
+
+Five respondents (55.6\%) reported exercising 3–4 days per week. Three respondents (33.3\%) reported exercising 1–2 days per week, while one respondent (11.1\%) reported never exercising. No respondents reported exercising 5 or more days per week.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q2.png}
+    \caption{Weekly Exercise Frequency}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Most participants are at least moderately familiar with exercising, although the survey population does not consist primarily of highly frequent exercisers.
+
+% ---------------------------------------------------------
+% QUESTION 2
+% ---------------------------------------------------------
+
+\subsection{Question 2: Difficulties When Deciding to Work Out}
+
+\textbf{Survey Question:}
+
+What is your biggest difficulty when deciding whether to work out?
+
+\subsubsection*{Response Statistics}
+
+Four respondents (44.4\%) indicated that not having enough time was their biggest difficulty. Two respondents (22.2\%) selected lack of motivation. One respondent (11.1\%) indicated that they did not know what workout to do, one respondent (11.1\%) reported not having the right equipment, and one respondent (11.1\%) identified the distance to a gym or convenience as a difficulty.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q3.png}
+    \caption{Primary Difficulties When Deciding to Work Out}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Lack of time was the most common difficulty among respondents, accounting for nearly half of all responses. These results support the inclusion of the ``Pick a Workout for Me'' feature because it can reduce the amount of time users spend deciding what exercises to perform. Workout filtering by location and available workout conditions may also help users quickly find an appropriate workout.
+
+% ---------------------------------------------------------
+% QUESTION 3
+% ---------------------------------------------------------
+
+\subsection{Question 3: Usefulness of Proposed Features}
+
+\textbf{Survey Question:}
+
+Rate how useful each of the following features would be in a workout app.
+
+\subsubsection*{Response Statistics}
+
+The Exercise Library received the strongest overall response among the four features evaluated. Six respondents rated the Exercise Library either a 4 or a 5 on the usefulness scale.
+
+The ``Pick a Workout for Me'' feature also received generally positive feedback. Three respondents rated it as very useful, while three respondents rated it as somewhat useful.
+
+The Personal Profile feature received mixed feedback. Five respondents rated the feature either a 4 or a 5, while the remaining respondents gave it lower ratings.
+
+Sign up/login received the weakest response. Four respondents rated sign up/login as a 1, indicating that account authentication itself was not viewed as one of the most useful functions of the application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q4.png}
+    \caption{Usefulness Ratings for Proposed Features}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results suggest that respondents value functionality that directly helps them exercise more than account-management functionality. The Exercise Library and workout recommendation feature provide immediate value to the user and will be considered core features of the prototype. A Personal Profile will also be retained but will be kept relatively simple. Sign up/login will receive lower development priority due to less interest.
+
+% ---------------------------------------------------------
+% QUESTION 4
+% ---------------------------------------------------------
+
+\subsection{Question 4: Workout Recommendation Usage}
+
+\textbf{Survey Question:}
+
+How often would you use a ``Pick a Workout for Me'' feature?
+
+\subsubsection*{Response Statistics}
+
+Four respondents (44.4\%) indicated that they would use the feature sometimes. Three respondents (33.3\%) indicated that they would use it often, while two respondents (22.2\%) indicated that they would rarely use it. No respondents selected ``Never.''
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q5.png}
+    \caption{Expected Usage of the Pick a Workout for Me Feature}
+\end{figure}
+
+\textbf{Interpretation:}
+
+A combined 77.8\% of respondents indicated that they would use the feature either sometimes or often. Although respondents did not indicate that they would rely on the recommendation feature for every workout, there was clear interest in having the application assist with workout selection.
+
+% ---------------------------------------------------------
+% QUESTION 5
+% ---------------------------------------------------------
+
+\subsection{Question 5: Workout Recommendation Criteria}
+
+\textbf{Survey Question:}
+
+Which information should the app use when choosing a workout for you?
+
+\subsubsection*{Response Statistics}
+
+Muscle group was the most commonly selected option, chosen by eight respondents (88.9\%). Available workout time and fitness level were each selected by seven respondents (77.8\%). Location and available equipment were each selected by six respondents (66.7\%). Fitness goal and workout type were each selected by four respondents (44.4\%). Previous workout history was selected by only one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q6.png}
+    \caption{Preferred Information for Workout Recommendations}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Respondents preferred recommendations based on information that directly affects the workout they can perform at that moment. Muscle group, available time, fitness level, location, and equipment received the strongest support. Previous workout history received considerably less interest.
+
+\textbf{Impact on Product:}
+
+The prototype will use a limited number of criteria when selecting workouts. Workout type and location will be included as planned, while muscle group and available workout time are strong candidates for additional filtering if development time permits. Previous workout history does not need to influence workout generation during the initial prototype.
+
+% ---------------------------------------------------------
+% QUESTION 6
+% ---------------------------------------------------------
+
+\subsection{Question 6: Personal Fitness Profile Information}
+
+\textbf{Survey Question:}
+
+Which information should be included in a user's fitness profile?
+
+\subsubsection*{Response Statistics}
+
+Weight was selected by all nine respondents (100\%). Fitness level was selected by eight respondents (88.9\%). Height and fitness goals were each selected by seven respondents (77.8\%). Age was selected by six respondents (66.7\%), gender was selected by five respondents (55.6\%), and available equipment was selected by four respondents (44.4\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q7.png}
+    \caption{Preferred Information for a User Fitness Profile}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results indicate that respondents are most interested in storing information that is directly related to their physical characteristics, fitness level, and fitness goals.
+
+% ---------------------------------------------------------
+% QUESTION 7
+% ---------------------------------------------------------
+
+\subsection{Question 7: Exercise Library Content}
+
+\textbf{Survey Question:}
+
+What should each exercise in the exercise library include?
+
+\subsubsection*{Response Statistics}
+
+Video demonstrations were selected by all nine respondents (100\%). Alternative exercises were selected by eight respondents (88.9\%). Difficulty level and common mistakes were each selected by six respondents (66.7\%). Images were selected by five respondents (55.6\%), while written instructions were selected by four respondents (44.4\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q8.png}
+    \caption{Preferred Exercise Library Information}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results show a strong preference for visual and practical exercise guidance. The Exercise Library will include essential exercise information such as the exercise name, muscle group, workout type, location, and difficulty level. Video demonstrations are strongly supported by the survey, but because this is a prototype, the application may provide links to existing demonstration videos rather than storing or producing original video content. Alternative exercises may be added if time permits.
+
+% ---------------------------------------------------------
+% QUESTION 8
+% ---------------------------------------------------------
+
+\subsection{Question 8: Workout Tracking Tools}
+
+\textbf{Survey Question:}
+
+Which workout tracking tools would you use?
+
+\subsubsection*{Response Statistics}
+
+The Workout Timer and Workout History were each selected by seven respondents (77.8\%). Weekly/monthly progress was selected by six respondents (66.7\%). Weight tracking was selected by four respondents (44.4\%). The Rest Timer and BMI Calculator were each selected by three respondents (33.3\%). A distance recorder for running was selected by only one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\linewidth]{q9.png}
+    \caption{Preferred Workout Tracking Tools}
+\end{figure}
+
+\textbf{Interpretation:}
+
+Respondents showed the greatest interest in features that help them perform workouts and review previous activity. The Workout Timer and Workout History/Progress Tracking features will be prioritized.
+
+% ---------------------------------------------------------
+% QUESTION 9
+% ---------------------------------------------------------
+
+\subsection{Question 9: Motivational Features}
+
+\textbf{Survey Question:}
+
+Which motivational feature would encourage you to exercise the most?
+
+\subsubsection*{Response Statistics}
+
+Personal records were selected by five respondents (55.6\%), making them the most popular motivational feature. Workout milestones were selected by two respondents (22.2\%). Workout streaks and achievement badges were each selected by one respondent (11.1\%).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{q10.png}
+    \caption{Preferred Motivational Features}
+\end{figure}
+
+\textbf{Interpretation:}
+
+The results indicate that respondents are more interested in seeing measurable personal improvement than in receiving virtual rewards. Personal records received considerably more support than achievement badges or workout streaks.
+
+% =========================================================
+% 3. FEATURE ANALYSIS
+% =========================================================
+
+\section{Feature Analysis}
+
+\subsection{Original Proposed Features}
+
+The originally proposed feature set consisted of the following:
+
+\begin{enumerate}
+    \item Sign up / login
+    \item Personal profile
+    \item Pick a workout for me
+    \item Exercise library
+    \item Workout type / location filter
+    \item Workout / rest timer
+    \item Workout history / progress tracking
+    \item Weight / BMI tracking
+    \item Achievement badges / milestones
+    \item Custom workout creation
+\end{enumerate}
+
+% =========================================================
+% FINAL FEATURES
+% =========================================================
+
+\subsection{Final Committed Features}
+
+Based on the survey results and the scope of the semester prototype, the team selected the following features for implementation:
+
+\begin{enumerate}
+    \item \textbf{Exercise Library} -- strongly supported by the feature-rating results and provides the data foundation for other parts of the application.
+    \item \textbf{Workout Type / Location Filtering} -- helps make workout recommendations practical for users in different environments.
+    \item \textbf{Pick a Workout for Me} -- App differential; supported by 77.8\% of respondents indicating that they would use it sometimes or often.
+    \item \textbf{Workout / Rest Timer} -- Workout Timer selected by 77.8\% of respondents as a tracking tool they would use; Rest timer would be trivial once Workout Timer is implemented.
+    \item \textbf{Personal Profile} -- supported particularly by strong interest in weight, fitness level, fitness goals, and height.
+    \item \textbf{Workout History} -- workout history received 77.8\% support and weekly/monthly progress received 66.7\%.
+\end{enumerate}
+
+\subsection{Stretch and Future Features}
+
+The following features may be implemented if development time permits
+or may be considered for a future version of the application:
+
+\begin{itemize}
+    \item Weight / BMI tracking
+    \item Achievement badges / milestones
+    \item Custom workout creation
+\end{itemize}
+
+% =========================================================
+% 4. CONCLUSION
+% =========================================================
+
+\section{Conclusion}
+
+The survey helped the team identify which features potential users considered most valuable and provided a basis for reducing the scope of the myFitness prototype.
+
+Based on the survey results, the team will prioritize the exercise library, workout recommendation system, workout filtering, personal profile, workout timer, workout history/progress tracking, and basic weight tracking. Features receiving less support or requiring additional development complexity will be treated as stretch goals or future enhancements.
+
+The survey also influenced several changes from the original feature set. In particular, authentication and achievement badges will receive lower priority, while workout history, progress information, and practical workout-selection features will receive greater emphasis. This smaller scope will allow the team to focus on producing a functional prototype while still reflecting the preferences expressed by survey participants.
+
+% =========================================================
+% REFERENCES
+% =========================================================
+
+%\section{References}
+
+%\begin{enumerate}[label={[\arabic*]}]
+%    \item I. Sommerville, \textit{Engineering Software Products:
+%    An Introduction to Modern Software Engineering}.
+%    Pearson, 2020.
+%\end{enumerate}
+
+\end{document}

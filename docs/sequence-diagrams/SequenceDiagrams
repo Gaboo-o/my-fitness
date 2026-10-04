@@ -1,0 +1,43 @@
+https://sequencediagram.org/
+
+title Exercise Library
+
+User->Frontend:Open Exercise Library
+Frontend->FlaskAPI:GET /api/exercises
+FlaskAPI->ExerciseService:Request exercise list
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService-->FlaskAPI:Return exercise list
+FlaskAPI-->Frontend:Return exercises as JSON
+Frontend-->User:Display exercise library
+
+title Filter Exercises by Workout Type and Location
+
+User->Frontend:Select workout type and location
+User->Frontend:Click Apply Filters
+Frontend->FlaskAPI:GET /api/exercises with\nselected filter values
+FlaskAPI->ExerciseService:Request matching exercises
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService->ExerciseService:Filter exercises by\ntype and location
+ExerciseService-->FlaskAPI:Return filtered exercises
+FlaskAPI-->Frontend:Return filtered results as JSON
+Frontend-->User:Display matching exercises
+
+title Pick a Workout for Me
+
+User->Frontend:Select workout preferences
+User->Frontend:Click Pick a Workout for Me
+Frontend->FlaskAPI:POST /api/workouts/generate\nwith workout preferences
+FlaskAPI->WorkoutService:Request generated workout
+WorkoutService->ExerciseService:Get exercises matching preferences
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService->ExerciseService:Filter matching exercises
+ExerciseService-->WorkoutService:Return matching exercises
+WorkoutService->WorkoutService:Select exercises for workout
+WorkoutService-->FlaskAPI:Return generated workout
+FlaskAPI-->Frontend:Return workout as JSON
+Frontend-->User:Display recommended workout
+
+
