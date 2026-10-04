@@ -3,7 +3,15 @@ const exerciseList = document.getElementById("exerciseList");
 
 loadButton.addEventListener("click", async () => {
     try {
-        const response = await fetch("/api/exercises");
+        // Build URL with filter parameters
+        const url = new URL("/api/exercises", window.location.origin);
+        const selectedType = document.getElementById("typeFilter")?.value;
+        const selectedLoc = document.getElementById("locationFilter")?.value;
+        
+        if (selectedType) url.searchParams.append("type", selectedType);
+        if (selectedLoc) url.searchParams.append("location", selectedLoc);
+
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error("Failed to load exercises.");
