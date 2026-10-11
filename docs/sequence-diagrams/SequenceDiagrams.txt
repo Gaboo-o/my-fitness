@@ -1,0 +1,100 @@
+https://sequencediagram.org/
+
+title Exercise Library
+
+User->Frontend:Open Exercise Library
+Frontend->FlaskAPI:GET /api/exercises
+FlaskAPI->ExerciseService:Request exercise list
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService-->FlaskAPI:Return exercise list
+FlaskAPI-->Frontend:Return exercises as JSON
+Frontend-->User:Display exercise library
+
+title Filter Exercises by Workout Type and Location
+
+User->Frontend:Select workout type and location
+User->Frontend:Click Apply Filters
+Frontend->FlaskAPI:GET /api/exercises with\nselected filter values
+FlaskAPI->ExerciseService:Request matching exercises
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService->ExerciseService:Filter exercises by\ntype and location
+ExerciseService-->FlaskAPI:Return filtered exercises
+FlaskAPI-->Frontend:Return filtered results as JSON
+Frontend-->User:Display matching exercises
+
+title Pick a Workout for Me
+
+User->Frontend:Select workout preferences
+User->Frontend:Click Pick a Workout for Me
+Frontend->FlaskAPI:POST /api/workouts/generate\nwith workout preferences
+FlaskAPI->WorkoutService:Request generated workout
+WorkoutService->ExerciseService:Get exercises matching preferences
+ExerciseService->JSONStorage:Read exercises.json
+JSONStorage-->ExerciseService:Return exercise data
+ExerciseService->ExerciseService:Filter matching exercises
+ExerciseService-->WorkoutService:Return matching exercises
+WorkoutService->WorkoutService:Select exercises for workout
+WorkoutService-->FlaskAPI:Return generated workout
+FlaskAPI-->Frontend:Return workout as JSON
+Frontend-->User:Display recommended workout
+
+title Personal Profile
+
+User->Frontend:Open profile page
+Frontend->FlaskAPI:GET /api/profile
+FlaskAPI->ProfileService:Request saved profile
+ProfileService->JSONStorage:Read profile.json
+JSONStorage-->ProfileService:Return profile data
+ProfileService-->FlaskAPI:Return profile
+FlaskAPI-->Frontend:Return profile as JSON
+Frontend-->User:Display profile information
+
+User->Frontend:Edit profile information
+User->Frontend:Click Save Profile
+Frontend->FlaskAPI:PUT /api/profile with profile data
+FlaskAPI->ProfileService:Validate and save profile
+ProfileService->JSONStorage:Write profile.json
+JSONStorage-->ProfileService:Confirm save
+ProfileService-->FlaskAPI:Save successful
+FlaskAPI-->Frontend:Return success response
+Frontend-->User:Display profile saved message
+
+title Workout Timer
+
+User->Frontend:Set workout duration
+User->Frontend:Click Start Timer
+Frontend->Frontend:Initialize countdown
+Frontend-->User:Display remaining time
+Frontend->Frontend:Update countdown every second
+Frontend-->User:Display updated remaining time
+Frontend->Frontend:Countdown reaches zero
+Frontend-->User:Display workout interval complete
+
+title Complete and Save Workout
+
+User->Frontend:Click Complete Workout
+Frontend->Frontend:Collect workout exercises and duration
+Frontend->FlaskAPI:POST /api/history with completed workout
+FlaskAPI->HistoryService:Create workout history record
+HistoryService->JSONStorage:Read history.json
+JSONStorage-->HistoryService:Return existing workout history
+HistoryService->JSONStorage:Write updated history.json
+JSONStorage-->HistoryService:Confirm write
+HistoryService-->FlaskAPI:Workout saved
+FlaskAPI-->Frontend:Return success response
+Frontend-->User:Display workout completed message
+
+title Workout History and Progress
+
+User->Frontend:Open workout history page
+Frontend->FlaskAPI:GET /api/history
+FlaskAPI->HistoryService:Request workout history
+HistoryService->JSONStorage:Read history.json
+JSONStorage-->HistoryService:Return workout records
+HistoryService-->FlaskAPI:Return workout history
+FlaskAPI-->Frontend:Return history as JSON
+Frontend->Frontend:Calculate weekly and monthly workout counts
+Frontend-->User:Display workout history
+Frontend-->User:Display progress summary
