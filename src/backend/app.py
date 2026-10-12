@@ -18,6 +18,23 @@ class JSONStorage:
         except (FileNotFoundError, json.JSONDecodeError):
             return None
 
+    @staticmethod
+    def read_history():
+        """Reads and returns data from history.json"""
+        history_file = DATA_DIR / "history.json"
+        try:
+            with open(history_file, "r", encoding="utf-8") as file:
+                return json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    @staticmethod
+    def write_history(data):
+        """Writes data to history.json"""
+        history_file = DATA_DIR / "history.json"
+        with open(history_file, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=4)
+
 # Exercise Service
 class ExerciseService:
     @staticmethod
@@ -45,6 +62,21 @@ class ExerciseService:
             ]
             
         return exercises
+
+# History Service
+class HistoryService:
+    @staticmethod
+    def get_workout_history():
+        """Fetchs history data from storage"""
+        return JSONStorage.read_history()
+
+    @staticmethod
+    def save_workout(workout_data):
+        """Appends a new workout to storage"""
+        history = JSONStorage.read_history()
+        history.append(workout_data)
+        JSONStorage.write_history(history)
+        return workout_data
 
 # FlaskAPI
 app = Flask(
@@ -81,7 +113,17 @@ def get_exercises():
     # Return final JSON to the frontend
     return jsonify(filtered_exercises)
 
-
+@app.route("/api/history", methods=["GET", "POST"])
+def manage_history():
+    """Handles saving and retrieving workout history"""
+    if request.method == "POST":
+        workout_data = request.json
+        saved_workout = HistoryService.save_workout(workout_data)
+        return jsonify(saved_workout), 201
+    
+    # GET request logic matches the diagram flow
+    history = HistoryService.get_workout_history()
+    return jsonify(history)
 
 if __name__ == "__main__":
     app.run(debug=True)
