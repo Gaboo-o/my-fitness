@@ -1,8 +1,14 @@
+const API = {
+    exercises: "/api/exercises",
+    profile: "/api/profile",
+};
+
 const loadButton = document.getElementById("loadExercises");
 const exerciseList = document.getElementById("exerciseList");
-
 const pickWorkoutButton = document.getElementById("pickWorkout");
 const workoutResults = document.getElementById("workoutResults");
+const profileForm = document.getElementById("profileForm");
+const profileMessage = document.getElementById("profileMessage");
 
 const timerDurationInput = document.getElementById("timerDuration");
 const timerDisplay = document.getElementById("timerDisplay");
@@ -31,93 +37,165 @@ loadButton.addEventListener("click", async () => {
         if (selectedLoc) {
             url.searchParams.append("location", selectedLoc);
         }
+// -------------------------
+// Personal Profile
+// -------------------------
 
-        const response = await fetch(url);
+async function loadProfile() {
+    try {
+        const response = await fetch(API.profile);
 
         if (!response.ok) {
-            throw new Error("Failed to load exercises.");
+            throw new Error("Failed to load profile.");
         }
 
-        const exercises = await response.json();
+        const profile = await response.json();
 
-        exerciseList.innerHTML = "";
-
-        exercises.forEach((exercise) => {
-            const item = document.createElement("div");
-
-            item.innerHTML = `
-                <h3>${exercise.name}</h3>
-                <p>Type: ${exercise.type}</p>
-                <p>Location: ${exercise.location}</p>
-                <p>Muscle Group: ${exercise.muscleGroup}</p>
-            `;
-
-            exerciseList.appendChild(item);
-        });
-
+        document.getElementById("profileName").value = profile.name ?? "";
+        document.getElementById("profileAge").value = profile.age ?? "";
+        document.getElementById("profileHeight").value = profile.height ?? "";
+        document.getElementById("profileWeight").value = profile.weight ?? "";
+        document.getElementById("fitnessGoal").value = profile.fitnessGoal ?? "";
     } catch (error) {
         console.error(error);
-        exerciseList.textContent = "Unable to load exercises.";
+        profileMessage.textContent = "Unable to load profile.";
+    }
+}
+
+
+profileForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    profileMessage.textContent = "";
+
+    const profileData = {
+        name: document.getElementById("profileName").value.trim(),
+        age: document.getElementById("profileAge").value || null,
+        height: document.getElementById("profileHeight").value || null,
+        weight: document.getElementById("profileWeight").value || null,
+        fitnessGoal: document.getElementById("fitnessGoal").value.trim(),
+    };
+
+    try {
+        const response = await fetch(API.profile, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(profileData),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Failed to save profile.");
+        }
+
+        profileMessage.textContent = result.message;
+    } catch (error) {
+        console.error(error);
+        profileMessage.textContent = error.message;
     }
 });
 
 
-// Pick a workout based on type and location
+// -------------------------
+// Exercises
+// -------------------------
+
+async function fetchExercises(type = "", location = "") {
+    const url = new URL(API.exercises, window.location.origin);
+
+    if (type) {
+        url.searchParams.set("type", type);
+    }
+
+    if (location) {
+        url.searchParams.set("location", location);
+    }
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.error || "Failed to load exercises.");
+    }
+
+    return response.json();
+}
+
+
+function renderExercise(container, exercise, headingLevel = "h3") {
+    const item = document.createElement("div");
+
+    item.innerHTML = `
+        <${headingLevel}>${exercise.name}</${headingLevel}>
+        <p>Type: ${exercise.type}</p>
+        <p>Location: ${exercise.location}</p>
+        <p>Muscle Group: ${exercise.muscleGroup}</p>
+    `;
+
+    container.appendChild(item);
+}
+
+
+loadButton.addEventListener("click", async () => {
+    const selectedType = document.getElementById("typeFilter").value;
+    const selectedLocation = document.getElementById("locationFilter").value;
+
+    try {
+        const exercises = await fetchExercises(selectedType, selectedLocation);
+
+        exerciseList.innerHTML = "";
+
+        if (exercises.length === 0) {
+            exerciseList.textContent = "No exercises match your selections.";
+            return;
+        }
+
+        exercises.forEach((exercise) => {
+            renderExercise(exerciseList, exercise, "h3");
+        });
+    } catch (error) {
+        console.error(error);
+        exerciseList.textContent = error.message;
+    }
+});
+
+
+// -------------------------
+// Workout Picker
+// -------------------------
+
 pickWorkoutButton.addEventListener("click", async () => {
     const selectedType = document.getElementById("workoutType").value;
     const selectedLocation = document.getElementById("workoutLocation").value;
 
     try {
-        const response = await fetch("/api/exercises");
-
-        if (!response.ok) {
-            throw new Error("Failed to load exercises.");
-        }
-
-        const exercises = await response.json();
-
-        // Filter exercises based on user selections
-        const matchingExercises = exercises.filter((exercise) => {
-            return (
-                exercise.type.toLowerCase() === selectedType.toLowerCase() &&
-                exercise.location.toLowerCase() === selectedLocation.toLowerCase()
-            );
-        });
+        // Let the Flask route perform the filtering.
+        const matchingExercises = await fetchExercises(
+            selectedType,
+            selectedLocation,
+        );
 
         workoutResults.innerHTML = "<h3>Your Workout</h3>";
 
-        // Handle no matches
         if (matchingExercises.length === 0) {
-            workoutResults.innerHTML += `
-                <p>No exercises match your selections.</p>
-            `;
+            workoutResults.innerHTML += "<p>No exercises match your selections.</p>";
             return;
         }
 
-        // Shuffle the matching exercises
         const shuffledExercises = [...matchingExercises].sort(
-            () => Math.random() - 0.5
+            () => Math.random() - 0.5,
         );
 
-        // Choose up to 3 exercises
         const workout = shuffledExercises.slice(0, 3);
 
         workout.forEach((exercise) => {
-            const item = document.createElement("div");
-
-            item.innerHTML = `
-                <h4>${exercise.name}</h4>
-                <p>Type: ${exercise.type}</p>
-                <p>Location: ${exercise.location}</p>
-                <p>Muscle Group: ${exercise.muscleGroup}</p>
-            `;
-
-            workoutResults.appendChild(item);
+            renderExercise(workoutResults, exercise, "h4");
         });
-
     } catch (error) {
         console.error(error);
-        workoutResults.textContent = "Unable to generate a workout.";
+        workoutResults.textContent = error.message;
     }
 });
 
@@ -236,3 +314,5 @@ timerDurationInput.addEventListener("change", () => {
 
 // Set the initial timer display
 updateTimerDisplay();
+// Load any previously saved profile when the page opens.
+loadProfile();

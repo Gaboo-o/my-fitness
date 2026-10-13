@@ -17,21 +17,13 @@ Then move into the project folder:
 The project is organized approximately like this:
 
     my-fitness/
-    |
     |-- src/
     |   |--backend/
-    |   |   |-- app.py
-    |   |   `-- requirements.txt
     |   `-- frontend/
     |       |-- index.html
     |       |-- css/
-    |       |   `-- styles.css
     |       `-- js/
-    |           `-- app.js
-    |
     |-- data/
-    |   `-- exercises.json
-    |
     |-- docs/
     |-- tests/
     |-- .gitignore
@@ -51,7 +43,7 @@ macOS/Linux:
 
 4. Install Backend Dependencies
 -------------------------------
-    pip install -r backend/requirements.txt
+    pip install -r src/backend/requirements.txt
 
 5. Run the Application
 ----------------------

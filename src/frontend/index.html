@@ -6,7 +6,7 @@
 
     <title>myFitness</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -15,33 +15,61 @@
     </header>
 
     <main>
-        <h2>Exercise Library</h2>
+        <section id="profileSection">
+            <h2>Personal Profile</h2>
 
-        <label for="typeFilter">Type:</label>
-        <select id="typeFilter">
-            <option value="">All</option>
-            <option value="Strength">Strength</option>
-            <option value="Cardio">Cardio</option>
-            <option value="Flexibility">Flexibility</option>
-        </select>
+            <form id="profileForm">
+                <label for="profileName">Name:</label>
+                <input id="profileName" name="name" type="text" required>
 
-        <label for="locationFilter">Location:</label>
-        <select id="locationFilter">
-            <option value="">Any</option>
-            <option value="Home">Home</option>
-            <option value="Gym">Gym</option>
-            <option value="Outdoors">Outdoors</option>
-        </select>
+                <label for="profileAge">Age:</label>
+                <input id="profileAge" name="age" type="number" min="1" step="1">
 
-        <button id="loadExercises">
-            Load Exercises
-        </button>
+                <label for="profileHeight">Height:</label>
+                <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
 
-        <div id="exerciseList"></div>
+                <label for="profileWeight">Weight:</label>
+                <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
+
+                <label for="fitnessGoal">Fitness Goal:</label>
+                <input id="fitnessGoal" name="fitnessGoal" type="text">
+
+                <button type="submit" id="saveProfile">Save Profile</button>
+            </form>
+
+            <p id="profileMessage" role="status" aria-live="polite"></p>
+        </section>
 
         <hr>
 
         <section>
+        <section id="exerciseLibrarySection">
+            <h2>Exercise Library</h2>
+
+            <label for="typeFilter">Type:</label>
+            <select id="typeFilter">
+                <option value="">All</option>
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Flexibility">Flexibility</option>
+            </select>
+
+            <label for="locationFilter">Location:</label>
+            <select id="locationFilter">
+                <option value="">Any</option>
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+                <option value="Outdoors">Outdoors</option>
+            </select>
+
+            <button id="loadExercises" type="button">Load Exercises</button>
+
+            <div id="exerciseList"></div>
+        </section>
+
+        <hr>
+
+        <section id="workoutPickerSection">
             <h2>Pick a Workout for Me</h2>
 
             <label for="workoutType">Type:</label>
@@ -56,9 +84,7 @@
                 <option value="Gym">Gym</option>
             </select>
 
-            <button id="pickWorkout">
-                Pick a Workout for Me
-            </button>
+            <button id="pickWorkout" type="button">Pick a Workout for Me</button>
 
             <div id="workoutResults"></div>
         </section>
