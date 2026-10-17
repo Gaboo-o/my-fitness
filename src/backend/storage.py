@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR.parent.parent / "data"
 
@@ -34,11 +35,29 @@ class JSONStorage:
     def write_profile(profile):
         """Writes profile data to profile.json."""
         profile_file = DATA_DIR / "profile.json"
+
         DATA_DIR.mkdir(parents=True, exist_ok=True)
 
         try:
             with open(profile_file, "w", encoding="utf-8") as file:
                 json.dump(profile, file, indent=4)
+
             return True
+
         except OSError:
             return False
+
+    @staticmethod
+    def read_workout_history():
+        """Reads and returns data from workout_history.json."""
+        history_file = DATA_DIR / "workout_history.json"
+
+        try:
+            with open(history_file, "r", encoding="utf-8") as file:
+                return json.load(file)
+
+        except FileNotFoundError:
+            return []
+
+        except json.JSONDecodeError:
+            return None
