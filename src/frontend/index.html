@@ -6,7 +6,7 @@
 
     <title>myFitness</title>
 
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -42,7 +42,6 @@
 
         <hr>
 
-        <section>
         <section id="exerciseLibrarySection">
             <h2>Exercise Library</h2>
 
@@ -62,7 +61,9 @@
                 <option value="Outdoors">Outdoors</option>
             </select>
 
-            <button id="loadExercises" type="button">Load Exercises</button>
+            <button id="loadExercises" type="button">
+                Load Exercises
+            </button>
 
             <div id="exerciseList"></div>
         </section>
@@ -84,14 +85,16 @@
                 <option value="Gym">Gym</option>
             </select>
 
-            <button id="pickWorkout" type="button">Pick a Workout for Me</button>
+            <button id="pickWorkout" type="button">
+                Pick a Workout for Me
+            </button>
 
             <div id="workoutResults"></div>
         </section>
 
         <hr>
 
-        <section>
+        <section id="workoutTimerSection">
             <h2>Workout Interval Timer</h2>
 
             <label for="timerDuration">
@@ -107,19 +110,43 @@
 
             <h3 id="timerDisplay">00:30</h3>
 
-            <button id="startTimer">
+            <button id="startTimer" type="button">
                 Start
             </button>
 
-            <button id="pauseTimer">
+            <button id="pauseTimer" type="button">
                 Pause
             </button>
 
-            <button id="resetTimer">
+            <button id="resetTimer" type="button">
                 Reset
             </button>
 
             <p id="timerMessage"></p>
+        </section>
+
+        <hr>
+
+        <section id="progressSection">
+            <h2>Progress Summary</h2>
+
+            <p>
+                This Week:
+                <strong id="weeklyWorkoutCount">0</strong>
+                workouts
+            </p>
+
+            <p>
+                This Month:
+                <strong id="monthlyWorkoutCount">0</strong>
+                workouts
+            </p>
+
+            <button id="refreshProgress" type="button">
+                Refresh Progress
+            </button>
+
+            <p id="progressMessage"></p>
         </section>
     </main>
 

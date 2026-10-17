@@ -1,12 +1,16 @@
 const API = {
     exercises: "/api/exercises",
     profile: "/api/profile",
+    progress: "/api/progress",
 };
+
 
 const loadButton = document.getElementById("loadExercises");
 const exerciseList = document.getElementById("exerciseList");
+
 const pickWorkoutButton = document.getElementById("pickWorkout");
 const workoutResults = document.getElementById("workoutResults");
+
 const profileForm = document.getElementById("profileForm");
 const profileMessage = document.getElementById("profileMessage");
 
@@ -17,9 +21,23 @@ const pauseTimerButton = document.getElementById("pauseTimer");
 const resetTimerButton = document.getElementById("resetTimer");
 const timerMessage = document.getElementById("timerMessage");
 
+const weeklyWorkoutCount =
+    document.getElementById("weeklyWorkoutCount");
+
+const monthlyWorkoutCount =
+    document.getElementById("monthlyWorkoutCount");
+
+const refreshProgressButton =
+    document.getElementById("refreshProgress");
+
+const progressMessage =
+    document.getElementById("progressMessage");
+
+
 let timerInterval = null;
 let remainingSeconds = Number(timerDurationInput.value);
 let isPaused = false;
+
 
 // -------------------------
 // Personal Profile
@@ -35,11 +53,21 @@ async function loadProfile() {
 
         const profile = await response.json();
 
-        document.getElementById("profileName").value = profile.name ?? "";
-        document.getElementById("profileAge").value = profile.age ?? "";
-        document.getElementById("profileHeight").value = profile.height ?? "";
-        document.getElementById("profileWeight").value = profile.weight ?? "";
-        document.getElementById("fitnessGoal").value = profile.fitnessGoal ?? "";
+        document.getElementById("profileName").value =
+            profile.name ?? "";
+
+        document.getElementById("profileAge").value =
+            profile.age ?? "";
+
+        document.getElementById("profileHeight").value =
+            profile.height ?? "";
+
+        document.getElementById("profileWeight").value =
+            profile.weight ?? "";
+
+        document.getElementById("fitnessGoal").value =
+            profile.fitnessGoal ?? "";
+
     } catch (error) {
         console.error(error);
         profileMessage.textContent = "Unable to load profile.";
@@ -49,32 +77,54 @@ async function loadProfile() {
 
 profileForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     profileMessage.textContent = "";
 
     const profileData = {
-        name: document.getElementById("profileName").value.trim(),
-        age: document.getElementById("profileAge").value || null,
-        height: document.getElementById("profileHeight").value || null,
-        weight: document.getElementById("profileWeight").value || null,
-        fitnessGoal: document.getElementById("fitnessGoal").value.trim(),
+        name: document
+            .getElementById("profileName")
+            .value
+            .trim(),
+
+        age:
+            document.getElementById("profileAge").value ||
+            null,
+
+        height:
+            document.getElementById("profileHeight").value ||
+            null,
+
+        weight:
+            document.getElementById("profileWeight").value ||
+            null,
+
+        fitnessGoal: document
+            .getElementById("fitnessGoal")
+            .value
+            .trim(),
     };
 
     try {
         const response = await fetch(API.profile, {
             method: "PUT",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify(profileData),
         });
 
         const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(result.error || "Failed to save profile.");
+            throw new Error(
+                result.error || "Failed to save profile."
+            );
         }
 
         profileMessage.textContent = result.message;
+
     } catch (error) {
         console.error(error);
         profileMessage.textContent = error.message;
@@ -87,7 +137,10 @@ profileForm.addEventListener("submit", async (event) => {
 // -------------------------
 
 async function fetchExercises(type = "", location = "") {
-    const url = new URL(API.exercises, window.location.origin);
+    const url = new URL(
+        API.exercises,
+        window.location.origin
+    );
 
     if (type) {
         url.searchParams.set("type", type);
@@ -100,15 +153,23 @@ async function fetchExercises(type = "", location = "") {
     const response = await fetch(url);
 
     if (!response.ok) {
-        const result = await response.json().catch(() => ({}));
-        throw new Error(result.error || "Failed to load exercises.");
+        const result =
+            await response.json().catch(() => ({}));
+
+        throw new Error(
+            result.error || "Failed to load exercises."
+        );
     }
 
     return response.json();
 }
 
 
-function renderExercise(container, exercise, headingLevel = "h3") {
+function renderExercise(
+    container,
+    exercise,
+    headingLevel = "h3"
+) {
     const item = document.createElement("div");
 
     item.innerHTML = `
@@ -123,22 +184,35 @@ function renderExercise(container, exercise, headingLevel = "h3") {
 
 
 loadButton.addEventListener("click", async () => {
-    const selectedType = document.getElementById("typeFilter").value;
-    const selectedLocation = document.getElementById("locationFilter").value;
+    const selectedType =
+        document.getElementById("typeFilter").value;
+
+    const selectedLocation =
+        document.getElementById("locationFilter").value;
 
     try {
-        const exercises = await fetchExercises(selectedType, selectedLocation);
+        const exercises = await fetchExercises(
+            selectedType,
+            selectedLocation
+        );
 
         exerciseList.innerHTML = "";
 
         if (exercises.length === 0) {
-            exerciseList.textContent = "No exercises match your selections.";
+            exerciseList.textContent =
+                "No exercises match your selections.";
+
             return;
         }
 
         exercises.forEach((exercise) => {
-            renderExercise(exerciseList, exercise, "h3");
+            renderExercise(
+                exerciseList,
+                exercise,
+                "h3"
+            );
         });
+
     } catch (error) {
         console.error(error);
         exerciseList.textContent = error.message;
@@ -150,153 +224,277 @@ loadButton.addEventListener("click", async () => {
 // Workout Picker
 // -------------------------
 
-pickWorkoutButton.addEventListener("click", async () => {
-    const selectedType = document.getElementById("workoutType").value;
-    const selectedLocation = document.getElementById("workoutLocation").value;
+pickWorkoutButton.addEventListener(
+    "click",
+    async () => {
+        const selectedType =
+            document.getElementById(
+                "workoutType"
+            ).value;
 
-    try {
-        // Let the Flask route perform the filtering.
-        const matchingExercises = await fetchExercises(
-            selectedType,
-            selectedLocation,
-        );
+        const selectedLocation =
+            document.getElementById(
+                "workoutLocation"
+            ).value;
 
-        workoutResults.innerHTML = "<h3>Your Workout</h3>";
+        try {
+            const matchingExercises =
+                await fetchExercises(
+                    selectedType,
+                    selectedLocation
+                );
 
-        if (matchingExercises.length === 0) {
-            workoutResults.innerHTML += "<p>No exercises match your selections.</p>";
-            return;
+            workoutResults.innerHTML =
+                "<h3>Your Workout</h3>";
+
+            if (matchingExercises.length === 0) {
+                workoutResults.innerHTML +=
+                    "<p>No exercises match your selections.</p>";
+
+                return;
+            }
+
+            const shuffledExercises = [
+                ...matchingExercises
+            ].sort(
+                () => Math.random() - 0.5
+            );
+
+            const workout =
+                shuffledExercises.slice(0, 3);
+
+            workout.forEach((exercise) => {
+                renderExercise(
+                    workoutResults,
+                    exercise,
+                    "h4"
+                );
+            });
+
+        } catch (error) {
+            console.error(error);
+
+            workoutResults.textContent =
+                error.message;
         }
-
-        const shuffledExercises = [...matchingExercises].sort(
-            () => Math.random() - 0.5,
-        );
-
-        const workout = shuffledExercises.slice(0, 3);
-
-        workout.forEach((exercise) => {
-            renderExercise(workoutResults, exercise, "h4");
-        });
-    } catch (error) {
-        console.error(error);
-        workoutResults.textContent = error.message;
     }
-});
+);
 
 
-// Convert seconds into MM:SS format
+// -------------------------
+// Workout Timer
+// -------------------------
+
 function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remaining = seconds % 60;
+    const minutes =
+        Math.floor(seconds / 60);
 
-    return `${String(minutes).padStart(2, "0")}:${String(remaining).padStart(2, "0")}`;
+    const remaining =
+        seconds % 60;
+
+    return `${String(minutes).padStart(
+        2,
+        "0"
+    )}:${String(remaining).padStart(
+        2,
+        "0"
+    )}`;
 }
 
 
-// Update the timer display
 function updateTimerDisplay() {
-    timerDisplay.textContent = formatTime(remainingSeconds);
+    timerDisplay.textContent =
+        formatTime(remainingSeconds);
 }
 
 
-// Start or resume the workout timer
-startTimerButton.addEventListener("click", () => {
-    if (timerInterval !== null) {
-        return;
-    }
-
-    // If starting a new timer, get the duration from the input
-    if (!isPaused) {
-        const selectedDuration = Number(timerDurationInput.value);
-
-        if (
-            !Number.isInteger(selectedDuration) ||
-            selectedDuration <= 0
-        ) {
-            timerMessage.textContent = "Please enter a valid number of seconds.";
+startTimerButton.addEventListener(
+    "click",
+    () => {
+        if (timerInterval !== null) {
             return;
         }
 
-        remainingSeconds = selectedDuration;
-        updateTimerDisplay();
-    }
+        if (!isPaused) {
+            const selectedDuration =
+                Number(timerDurationInput.value);
 
-    timerMessage.textContent = "Workout interval in progress...";
-    isPaused = false;
+            if (
+                !Number.isInteger(
+                    selectedDuration
+                ) ||
+                selectedDuration <= 0
+            ) {
+                timerMessage.textContent =
+                    "Please enter a valid number of seconds.";
 
-    timerInterval = setInterval(() => {
-        remainingSeconds -= 1;
+                return;
+            }
 
-        updateTimerDisplay();
-
-        if (remainingSeconds <= 0) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            remainingSeconds = 0;
-            isPaused = false;
+            remainingSeconds =
+                selectedDuration;
 
             updateTimerDisplay();
-            timerMessage.textContent = "Interval complete!";
         }
-    }, 1000);
-});
+
+        timerMessage.textContent =
+            "Workout interval in progress...";
+
+        isPaused = false;
+
+        timerInterval = setInterval(
+            () => {
+                remainingSeconds -= 1;
+
+                updateTimerDisplay();
+
+                if (remainingSeconds <= 0) {
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    timerInterval = null;
+                    remainingSeconds = 0;
+                    isPaused = false;
+
+                    updateTimerDisplay();
+
+                    timerMessage.textContent =
+                        "Interval complete!";
+                }
+            },
+            1000
+        );
+    }
+);
 
 
-// Pause the workout timer
-pauseTimerButton.addEventListener("click", () => {
-    if (timerInterval !== null) {
+pauseTimerButton.addEventListener(
+    "click",
+    () => {
+        if (timerInterval !== null) {
+            clearInterval(timerInterval);
+
+            timerInterval = null;
+            isPaused = true;
+
+            timerMessage.textContent =
+                "Timer paused.";
+        }
+    }
+);
+
+
+resetTimerButton.addEventListener(
+    "click",
+    () => {
         clearInterval(timerInterval);
+
         timerInterval = null;
-        isPaused = true;
+        isPaused = false;
 
-        timerMessage.textContent = "Timer paused.";
-    }
-});
+        const selectedDuration =
+            Number(timerDurationInput.value);
 
+        if (
+            Number.isInteger(
+                selectedDuration
+            ) &&
+            selectedDuration > 0
+        ) {
+            remainingSeconds =
+                selectedDuration;
+        } else {
+            remainingSeconds = 30;
 
-// Reset the workout timer
-resetTimerButton.addEventListener("click", () => {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    isPaused = false;
+            timerDurationInput.value =
+                30;
+        }
 
-    const selectedDuration = Number(timerDurationInput.value);
-
-    if (
-        Number.isInteger(selectedDuration) &&
-        selectedDuration > 0
-    ) {
-        remainingSeconds = selectedDuration;
-    } else {
-        remainingSeconds = 30;
-        timerDurationInput.value = 30;
-    }
-
-    updateTimerDisplay();
-    timerMessage.textContent = "Timer reset.";
-});
-
-
-// Update display when the duration is changed
-timerDurationInput.addEventListener("change", () => {
-    if (timerInterval !== null || isPaused) {
-        return;
-    }
-
-    const selectedDuration = Number(timerDurationInput.value);
-
-    if (
-        Number.isInteger(selectedDuration) &&
-        selectedDuration > 0
-    ) {
-        remainingSeconds = selectedDuration;
         updateTimerDisplay();
-        timerMessage.textContent = "";
+
+        timerMessage.textContent =
+            "Timer reset.";
     }
-});
+);
 
 
-// Set the initial timer display
+timerDurationInput.addEventListener(
+    "change",
+    () => {
+        if (
+            timerInterval !== null ||
+            isPaused
+        ) {
+            return;
+        }
+
+        const selectedDuration =
+            Number(timerDurationInput.value);
+
+        if (
+            Number.isInteger(
+                selectedDuration
+            ) &&
+            selectedDuration > 0
+        ) {
+            remainingSeconds =
+                selectedDuration;
+
+            updateTimerDisplay();
+
+            timerMessage.textContent = "";
+        }
+    }
+);
+
+
+// -------------------------
+// Progress Summary
+// -------------------------
+
+async function loadProgressSummary() {
+    progressMessage.textContent = "";
+
+    try {
+        const response =
+            await fetch(API.progress);
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.error ||
+                "Failed to load progress."
+            );
+        }
+
+        weeklyWorkoutCount.textContent =
+            result.weeklyCount;
+
+        monthlyWorkoutCount.textContent =
+            result.monthlyCount;
+
+    } catch (error) {
+        console.error(error);
+
+        progressMessage.textContent =
+            error.message;
+    }
+}
+
+
+refreshProgressButton.addEventListener(
+    "click",
+    loadProgressSummary
+);
+
+
+// -------------------------
+// Initial Page Setup
+// -------------------------
+
 updateTimerDisplay();
-// Load any previously saved profile when the page opens.
 loadProfile();
+loadProgressSummary();
