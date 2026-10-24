@@ -1,128 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>myFitness</title>
+        <title>myFitness</title>
 
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
 
-<body>
-    <header>
-        <h1>myFitness</h1>
-    </header>
+    <body>
+        <header>
+            <h1>myFitness</h1>
+            <nav>
+            <nav></nav><a href="/history.html">View Workout History</a>
+            <nav>
+        </header>
 
-    <main>
-        <section id="profileSection">
-            <h2>Personal Profile</h2>
+        <main>
+            <section id="profileSection">
+                <h2>Personal Profile</h2>
 
-            <form id="profileForm">
-                <label for="profileName">Name:</label>
-                <input id="profileName" name="name" type="text" required>
+                <form id="profileForm">
+                    <label for="profileName">Name:</label>
+                    <input id="profileName" name="name" type="text" required>
 
-                <label for="profileAge">Age:</label>
-                <input id="profileAge" name="age" type="number" min="1" step="1">
+                    <label for="profileAge">Age:</label>
+                    <input id="profileAge" name="age" type="number" min="1" step="1">
 
-                <label for="profileHeight">Height:</label>
-                <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
+                    <label for="profileHeight">Height:</label>
+                    <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
 
-                <label for="profileWeight">Weight:</label>
-                <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
+                    <label for="profileWeight">Weight:</label>
+                    <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
 
-                <label for="fitnessGoal">Fitness Goal:</label>
-                <input id="fitnessGoal" name="fitnessGoal" type="text">
+                    <label for="fitnessGoal">Fitness Goal:</label>
+                    <input id="fitnessGoal" name="fitnessGoal" type="text">
 
-                <button type="submit" id="saveProfile">Save Profile</button>
-            </form>
+                    <button type="submit" id="saveProfile">Save Profile</button>
+                </form>
 
-            <p id="profileMessage" role="status" aria-live="polite"></p>
-        </section>
+                <p id="profileMessage" role="status" aria-live="polite"></p>
+            </section>
 
-        <hr>
+            <hr>
 
-        <section>
-        <section id="exerciseLibrarySection">
-            <h2>Exercise Library</h2>
+            <section>
+            <section id="exerciseLibrarySection">
+                <h2>Exercise Library</h2>
 
-            <label for="typeFilter">Type:</label>
-            <select id="typeFilter">
-                <option value="">All</option>
-                <option value="Strength">Strength</option>
-                <option value="Cardio">Cardio</option>
-                <option value="Flexibility">Flexibility</option>
-            </select>
+                <label for="typeFilter">Type:</label>
+                <select id="typeFilter">
+                    <option value="">All</option>
+                    <option value="Strength">Strength</option>
+                    <option value="Cardio">Cardio</option>
+                    <option value="Flexibility">Flexibility</option>
+                </select>
 
-            <label for="locationFilter">Location:</label>
-            <select id="locationFilter">
-                <option value="">Any</option>
-                <option value="Home">Home</option>
-                <option value="Gym">Gym</option>
-                <option value="Outdoors">Outdoors</option>
-            </select>
+                <label for="locationFilter">Location:</label>
+                <select id="locationFilter">
+                    <option value="">Any</option>
+                    <option value="Home">Home</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Outdoors">Outdoors</option>
+                </select>
 
-            <button id="loadExercises" type="button">Load Exercises</button>
+                <button id="loadExercises" type="button">Load Exercises</button>
 
-            <div id="exerciseList"></div>
-        </section>
+                <div id="exerciseList"></div>
+            </section>
 
-        <hr>
+            <hr>
 
-        <section id="workoutPickerSection">
-            <h2>Pick a Workout for Me</h2>
+            <section id="workoutPickerSection">
+                
+                <h2>Pick a Workout for Me</h2>
 
-            <label for="workoutType">Type:</label>
-            <select id="workoutType">
-                <option value="Strength">Strength</option>
-                <option value="Cardio">Cardio</option>
-            </select>
+                <label for="workoutType">Type:</label>
+                <select id="workoutType">
+                    <option value="Strength">Strength</option>
+                    <option value="Cardio">Cardio</option>
+                </select>
 
-            <label for="workoutLocation">Location:</label>
-            <select id="workoutLocation">
-                <option value="Home">Home</option>
-                <option value="Gym">Gym</option>
-            </select>
+                <label for="workoutLocation">Location:</label>
+                <select id="workoutLocation">
+                    <option value="Home">Home</option>
+                    <option value="Gym">Gym</option>
+                </select>
 
-            <button id="pickWorkout" type="button">Pick a Workout for Me</button>
+                <button id="pickWorkout" type="button">Pick a Workout for Me</button>
 
-            <div id="workoutResults"></div>
-        </section>
+                <div id="workoutResults"></div>
 
-        <hr>
+                <button id="saveWorkoutBtn" type="button" style="display: none; margin-top: 15px;">Save This Workout</button>
+                <p id="saveMessage" aria-live="polite"></p>
+            </section>
 
-        <section>
-            <h2>Workout Interval Timer</h2>
+            <hr>
 
-            <label for="timerDuration">
-                Interval Duration (seconds):
-            </label>
+            <section>
+                <h2>Workout Interval Timer</h2>
 
-            <input
-                type="number"
-                id="timerDuration"
-                min="1"
-                value="30"
-            >
+                <label for="timerDuration">
+                    Interval Duration (seconds):
+                </label>
 
-            <h3 id="timerDisplay">00:30</h3>
+                <input
+                    type="number"
+                    id="timerDuration"
+                    min="1"
+                    value="30"
+                >
 
-            <button id="startTimer">
-                Start
-            </button>
+                <h3 id="timerDisplay">00:30</h3>
 
-            <button id="pauseTimer">
-                Pause
-            </button>
+                <button id="startTimer">
+                    Start
+                </button>
 
-            <button id="resetTimer">
-                Reset
-            </button>
+                <button id="pauseTimer">
+                    Pause
+                </button>
 
-            <p id="timerMessage"></p>
-        </section>
-    </main>
+                <button id="resetTimer">
+                    Reset
+                </button>
 
-    <script src="/js/app.js"></script>
-</body>
-</html>
+                <p id="timerMessage"></p>
+            </section>
+        </main>
+
+        <script src="/js/app.js"></script>
+    </body>
+    </html>
