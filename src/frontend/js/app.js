@@ -2,6 +2,7 @@ const API = {
     exercises: "/api/exercises",
     profile: "/api/profile",
     progress: "/api/progress",
+    history: "/api/history",
 };
 
 
@@ -10,6 +11,9 @@ const exerciseList = document.getElementById("exerciseList");
 
 const pickWorkoutButton = document.getElementById("pickWorkout");
 const workoutResults = document.getElementById("workoutResults");
+const saveWorkoutButton = document.getElementById("saveWorkoutBtn");
+const saveMessage = document.getElementById("saveMessage");
+let selectedWorkout = null;
 
 const profileForm = document.getElementById("profileForm");
 const profileMessage = document.getElementById("profileMessage");
@@ -237,6 +241,10 @@ pickWorkoutButton.addEventListener(
                 "workoutLocation"
             ).value;
 
+        selectedWorkout = null;
+        saveWorkoutButton.style.display = "none";
+        saveMessage.textContent = "";
+
         try {
             const matchingExercises =
                 await fetchExercises(
@@ -263,6 +271,13 @@ pickWorkoutButton.addEventListener(
             const workout =
                 shuffledExercises.slice(0, 3);
 
+            selectedWorkout = {
+                type: selectedType,
+                location: selectedLocation,
+                exercises: workout.map((exercise) => exercise.name),
+            };
+            saveWorkoutButton.style.display = "inline-block";
+
             workout.forEach((exercise) => {
                 renderExercise(
                     workoutResults,
@@ -279,6 +294,42 @@ pickWorkoutButton.addEventListener(
         }
     }
 );
+
+
+// -------------------------
+// Save completed workout
+// -------------------------
+saveWorkoutButton.addEventListener("click", async () => {
+    if (!selectedWorkout) {
+        saveMessage.textContent = "Pick a workout first.";
+        return;
+    }
+
+    saveWorkoutButton.disabled = true;
+    saveMessage.textContent = "Saving workout...";
+
+    try {
+        const response = await fetch(API.history, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(selectedWorkout),
+        });
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result.error || "Failed to save workout.");
+        }
+
+        saveMessage.textContent = result.message || "Workout saved successfully.";
+        selectedWorkout = null;
+        saveWorkoutButton.style.display = "none";
+        await loadProgressSummary();
+    } catch (error) {
+        console.error(error);
+        saveMessage.textContent = error.message;
+    } finally {
+        saveWorkoutButton.disabled = false;
+    }
+});
 
 
 // -------------------------
