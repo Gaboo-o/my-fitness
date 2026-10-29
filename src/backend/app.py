@@ -1,8 +1,11 @@
+
 from flask import Flask, jsonify
 from pathlib import Path
 
 from routes.exercise_routes import exercise_bp
 from routes.profile_routes import profile_bp
+from routes.weight_routes import weight_bp
+
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
@@ -15,9 +18,11 @@ app = Flask(
     static_url_path="",
 )
 
+
 # Register feature routes
 app.register_blueprint(exercise_bp)
 app.register_blueprint(profile_bp)
+app.register_blueprint(weight_bp)
 
 
 @app.route("/")
