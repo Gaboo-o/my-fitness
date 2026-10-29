@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +13,14 @@
 <body>
     <header>
         <h1>myFitness</h1>
+
+        <nav>
+            <a href="/history.html">View Workout History</a>
+        </nav>
     </header>
 
     <main>
+        <!-- Personal Profile -->
         <section id="profileSection">
             <h2>Personal Profile</h2>
 
@@ -34,7 +40,9 @@
                 <label for="fitnessGoal">Fitness Goal:</label>
                 <input id="fitnessGoal" name="fitnessGoal" type="text">
 
-                <button type="submit" id="saveProfile">Save Profile</button>
+                <button type="submit" id="saveProfile">
+                    Save Profile
+                </button>
             </form>
 
             <p id="profileMessage" role="status" aria-live="polite"></p>
@@ -42,6 +50,7 @@
 
         <hr>
 
+        <!-- Exercise Library -->
         <section id="exerciseLibrarySection">
             <h2>Exercise Library</h2>
 
@@ -70,6 +79,7 @@
 
         <hr>
 
+        <!-- Workout Picker -->
         <section id="workoutPickerSection">
             <h2>Pick a Workout for Me</h2>
 
@@ -90,10 +100,21 @@
             </button>
 
             <div id="workoutResults"></div>
+
+            <button
+                id="saveWorkoutBtn"
+                type="button"
+                style="display: none; margin-top: 15px;"
+            >
+                Save This Workout
+            </button>
+
+            <p id="saveMessage" aria-live="polite"></p>
         </section>
 
         <hr>
 
+        <!-- Workout Interval Timer -->
         <section id="workoutTimerSection">
             <h2>Workout Interval Timer</h2>
 
@@ -127,6 +148,7 @@
 
         <hr>
 
+        <!-- Progress Summary -->
         <section id="progressSection">
             <h2>Progress Summary</h2>
 
@@ -146,7 +168,7 @@
                 Refresh Progress
             </button>
 
-            <p id="progressMessage"></p>
+            <p id="progressMessage" role="status" aria-live="polite"></p>
         </section>
     </main>
 
