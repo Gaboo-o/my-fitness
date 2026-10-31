@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weight Tracking - myFitness</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>myFitness - Weight Tracking</h1>
+
+        <nav>
+            <a href="/">Back to Dashboard</a>
+            |
+            <a href="/history.html">Workout History</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Weight Entry Form -->
+        <section id="weightTrackingSection">
+            <h2>Record Your Weight</h2>
+
+            <p>
+                Record your weight and monitor changes over time.
+            </p>
+
+            <form id="weightForm">
+                <label for="weightInput">Weight:</label>
+                <input
+                    type="number"
+                    id="weightInput"
+                    name="weight"
+                    min="0.01"
+                    max="1102"
+                    step="0.01"
+                    placeholder="Enter your weight"
+                    required
+                >
+
+                <label for="weightUnit">Unit:</label>
+                <select id="weightUnit" name="unit">
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lb">Pounds (lb)</option>
+                </select>
+
+                <label for="weightDate">Date:</label>
+                <input
+                    type="date"
+                    id="weightDate"
+                    name="date"
+                    required
+                >
+
+                <button type="submit" id="saveWeight">
+                    Save Weight
+                </button>
+            </form>
+
+            <p id="weightMessage" role="status" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Weight Summary -->
+        <section id="weightSummarySection">
+            <h2>Weight Summary</h2>
+
+            <p>
+                Latest Weight:
+                <strong id="latestWeight">--</strong>
+                <span id="latestWeightDate"></span>
+            </p>
+
+            <p>
+                Previous Weight:
+                <strong id="previousWeight">--</strong>
+                <span id="previousWeightDate"></span>
+            </p>
+
+            <p>
+                Weight Change:
+                <strong id="weightChange">--</strong>
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Weight History -->
+        <section id="weightHistorySection">
+            <h2>Weight History</h2>
+
+            <label for="displayWeightUnit">
+                Display Unit:
+            </label>
+
+            <select id="displayWeightUnit">
+                <option value="kg">Kilograms (kg)</option>
+                <option value="lb">Pounds (lb)</option>
+            </select>
+
+            <button id="refreshWeight" type="button">
+                Refresh History
+            </button>
+
+            <div id="weightHistoryList"></div>
+        </section>
+    </main>
+
+    <script src="/js/weight.js"></script>
+</body>
+</html>

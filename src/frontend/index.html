@@ -1,135 +1,208 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>myFitness</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
+    <title>myFitness</title>
 
-    <body>
-        <header>
-            <h1>myFitness</h1>
-            <nav>
-            <nav></nav><a href="/history.html">View Workout History</a>
-            <nav>
-        </header>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-        <main>
-            <section id="profileSection">
-                <h2>Personal Profile</h2>
+<body>
+    <header>
+        <h1>myFitness</h1>
 
-                <form id="profileForm">
-                    <label for="profileName">Name:</label>
-                    <input id="profileName" name="name" type="text" required>
+        <nav>
+            <a href="/history.html">View Workout History</a>
+            |
+            <a href="/weight.html">Weight Tracking</a>
+        </nav>
+    </header>
 
-                    <label for="profileAge">Age:</label>
-                    <input id="profileAge" name="age" type="number" min="1" step="1">
+    <main>
 
-                    <label for="profileHeight">Height:</label>
-                    <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
+        <!-- Personal Profile -->
+        <section id="profileSection">
+            <h2>Personal Profile</h2>
 
-                    <label for="profileWeight">Weight:</label>
-                    <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
+            <form id="profileForm">
 
-                    <label for="fitnessGoal">Fitness Goal:</label>
-                    <input id="fitnessGoal" name="fitnessGoal" type="text">
-
-                    <button type="submit" id="saveProfile">Save Profile</button>
-                </form>
-
-                <p id="profileMessage" role="status" aria-live="polite"></p>
-            </section>
-
-            <hr>
-
-            <section>
-            <section id="exerciseLibrarySection">
-                <h2>Exercise Library</h2>
-
-                <label for="typeFilter">Type:</label>
-                <select id="typeFilter">
-                    <option value="">All</option>
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                    <option value="Flexibility">Flexibility</option>
-                </select>
-
-                <label for="locationFilter">Location:</label>
-                <select id="locationFilter">
-                    <option value="">Any</option>
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                    <option value="Outdoors">Outdoors</option>
-                </select>
-
-                <button id="loadExercises" type="button">Load Exercises</button>
-
-                <div id="exerciseList"></div>
-            </section>
-
-            <hr>
-
-            <section id="workoutPickerSection">
-                
-                <h2>Pick a Workout for Me</h2>
-
-                <label for="workoutType">Type:</label>
-                <select id="workoutType">
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                </select>
-
-                <label for="workoutLocation">Location:</label>
-                <select id="workoutLocation">
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                </select>
-
-                <button id="pickWorkout" type="button">Pick a Workout for Me</button>
-
-                <div id="workoutResults"></div>
-
-                <button id="saveWorkoutBtn" type="button" style="display: none; margin-top: 15px;">Save This Workout</button>
-                <p id="saveMessage" aria-live="polite"></p>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2>Workout Interval Timer</h2>
-
-                <label for="timerDuration">
-                    Interval Duration (seconds):
-                </label>
-
+                <label for="profileName">Name:</label>
                 <input
-                    type="number"
-                    id="timerDuration"
-                    min="1"
-                    value="30"
+                    id="profileName"
+                    name="name"
+                    type="text"
+                    required
                 >
 
-                <h3 id="timerDisplay">00:30</h3>
+                <label for="profileAge">Age:</label>
+                <input
+                    id="profileAge"
+                    name="age"
+                    type="number"
+                    min="1"
+                    step="1"
+                >
 
-                <button id="startTimer">
-                    Start
+                <label for="profileHeight">Height:</label>
+                <input
+                    id="profileHeight"
+                    name="height"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                >
+
+                <label for="profileWeight">Weight:</label>
+                <input
+                    id="profileWeight"
+                    name="weight"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                >
+
+                <label for="fitnessGoal">Fitness Goal:</label>
+                <input
+                    id="fitnessGoal"
+                    name="fitnessGoal"
+                    type="text"
+                >
+
+                <button type="submit" id="saveProfile">
+                    Save Profile
                 </button>
+            </form>
 
-                <button id="pauseTimer">
-                    Pause
-                </button>
+            <p
+                id="profileMessage"
+                role="status"
+                aria-live="polite"
+            ></p>
+        </section>
 
-                <button id="resetTimer">
-                    Reset
-                </button>
+        <hr>
 
-                <p id="timerMessage"></p>
-            </section>
-        </main>
+        <!-- Exercise Library -->
+        <section id="exerciseLibrarySection">
+            <h2>Exercise Library</h2>
 
-        <script src="/js/app.js"></script>
-    </body>
-    </html>
+            <label for="typeFilter">Type:</label>
+
+            <select id="typeFilter">
+                <option value="">All</option>
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Flexibility">Flexibility</option>
+            </select>
+
+            <label for="locationFilter">Location:</label>
+
+            <select id="locationFilter">
+                <option value="">Any</option>
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+                <option value="Outdoors">Outdoors</option>
+            </select>
+
+            <button id="loadExercises" type="button">
+                Load Exercises
+            </button>
+
+            <div id="exerciseList"></div>
+        </section>
+
+        <hr>
+
+        <!-- Workout Picker -->
+        <section id="workoutPickerSection">
+            <h2>Pick a Workout for Me</h2>
+
+            <label for="workoutType">Type:</label>
+
+            <select id="workoutType">
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+            </select>
+
+            <label for="workoutLocation">Location:</label>
+
+            <select id="workoutLocation">
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+            </select>
+
+            <button id="pickWorkout" type="button">
+                Pick a Workout for Me
+            </button>
+
+            <div id="workoutResults"></div>
+
+            <button
+                id="saveWorkoutBtn"
+                type="button"
+                style="display: none; margin-top: 15px;"
+            >
+                Save This Workout
+            </button>
+
+            <p id="saveMessage" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Workout Interval Timer -->
+        <section id="workoutTimerSection">
+            <h2>Workout Interval Timer</h2>
+
+            <label for="timerDuration">
+                Interval Duration (seconds):
+            </label>
+
+            <input
+                type="number"
+                id="timerDuration"
+                min="1"
+                value="30"
+            >
+
+            <h3 id="timerDisplay">00:30</h3>
+
+            <button id="startTimer" type="button">
+                Start
+            </button>
+
+            <button id="pauseTimer" type="button">
+                Pause
+            </button>
+
+            <button id="resetTimer" type="button">
+                Reset
+            </button>
+
+            <p id="timerMessage"></p>
+        </section>
+
+        <hr>
+
+        <!-- Weight Tracking -->
+        <section id="weightTrackingSection">
+            <h2>Weight Tracking</h2>
+
+            <p>
+                Record your weight, review previous measurements,
+                and monitor changes over time.
+            </p>
+
+            <a href="/weight.html">
+                Open Weight Tracking
+            </a>
+        </section>
+
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
