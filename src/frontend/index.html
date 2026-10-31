@@ -1,135 +1,239 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>myFitness</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myFitness</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
+<body>
+    <header>
+        <h1>myFitness</h1>
+        <nav>
+            <a href="/history.html">View Workout History</a>
+        </nav>
+    </header>
 
-    <body>
-        <header>
-            <h1>myFitness</h1>
-            <nav>
-            <nav></nav><a href="/history.html">View Workout History</a>
-            <nav>
-        </header>
+    <main>
+        <!-- Personal Profile -->
+        <section id="profileSection">
+            <h2>Personal Profile</h2>
 
-        <main>
-            <section id="profileSection">
-                <h2>Personal Profile</h2>
+            <form id="profileForm">
+                <label for="profileName">Name:</label>
+                <input id="profileName" name="name" type="text" required>
 
-                <form id="profileForm">
-                    <label for="profileName">Name:</label>
-                    <input id="profileName" name="name" type="text" required>
+                <label for="profileAge">Age:</label>
+                <input id="profileAge" name="age" type="number" min="1" step="1">
 
-                    <label for="profileAge">Age:</label>
-                    <input id="profileAge" name="age" type="number" min="1" step="1">
+                <label for="profileHeight">Height:</label>
+                <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
 
-                    <label for="profileHeight">Height:</label>
-                    <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
+                <label for="profileWeight">Weight:</label>
+                <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
 
-                    <label for="profileWeight">Weight:</label>
-                    <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
+                <label for="fitnessGoal">Fitness Goal:</label>
+                <input id="fitnessGoal" name="fitnessGoal" type="text">
 
-                    <label for="fitnessGoal">Fitness Goal:</label>
-                    <input id="fitnessGoal" name="fitnessGoal" type="text">
+                <button type="submit" id="saveProfile">Save Profile</button>
+            </form>
 
-                    <button type="submit" id="saveProfile">Save Profile</button>
+            <p id="profileMessage" role="status" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Exercise Library -->
+        <section id="exerciseLibrarySection">
+            <h2>Exercise Library</h2>
+
+            <label for="typeFilter">Type:</label>
+            <select id="typeFilter">
+                <option value="">All</option>
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Flexibility">Flexibility</option>
+            </select>
+
+            <label for="locationFilter">Location:</label>
+            <select id="locationFilter">
+                <option value="">Any</option>
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+                <option value="Outdoors">Outdoors</option>
+            </select>
+
+            <button id="loadExercises" type="button">Load Exercises</button>
+            <div id="exerciseList"></div>
+        </section>
+
+        <hr>
+
+        <!-- Workout Picker -->
+        <section id="workoutPickerSection">
+            <h2>Pick a Workout for Me</h2>
+
+            <label for="workoutType">Type:</label>
+            <select id="workoutType">
+                <option value="Strength">Strength</option>
+                <option value="Cardio">Cardio</option>
+            </select>
+
+            <label for="workoutLocation">Location:</label>
+            <select id="workoutLocation">
+                <option value="Home">Home</option>
+                <option value="Gym">Gym</option>
+            </select>
+
+            <button id="pickWorkout" type="button">
+                Pick a Workout for Me
+            </button>
+
+            <div id="workoutResults"></div>
+
+            <button
+                id="saveWorkoutBtn"
+                type="button"
+                style="display: none; margin-top: 15px;"
+            >
+                Save This Workout
+            </button>
+
+            <p id="saveMessage" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Workout Interval Timer -->
+        <section id="timerSection">
+            <h2>Workout Interval Timer</h2>
+
+            <label for="timerDuration">
+                Interval Duration (seconds):
+            </label>
+
+            <input
+                type="number"
+                id="timerDuration"
+                min="1"
+                value="30"
+            >
+
+            <h3 id="timerDisplay">00:30</h3>
+
+            <button id="startTimer" type="button">Start</button>
+            <button id="pauseTimer" type="button">Pause</button>
+            <button id="resetTimer" type="button">Reset</button>
+
+            <p id="timerMessage" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Personal Workout Milestones -->
+        <section id="milestonesSection">
+            <h2>Personal Workout Milestones</h2>
+
+            <p>
+                Set personal fitness goals, track your progress,
+                and celebrate your achievements.
+            </p>
+
+            <div class="milestone-summary">
+                <div class="summary-card">
+                    <h3 id="totalMilestones">0</h3>
+                    <p>Total Milestones</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3 id="activeMilestones">0</h3>
+                    <p>In Progress</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3 id="completedMilestones">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+
+            <div class="milestone-form-container">
+                <h3>Create a New Milestone</h3>
+
+                <form id="milestoneForm">
+                    <div class="milestone-form-fields">
+                        <div class="form-field">
+                            <label for="milestoneTitle">
+                                Milestone Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="milestoneTitle"
+                                placeholder="e.g. Complete 20 Workouts"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="milestoneTarget">
+                                Target
+                            </label>
+
+                            <input
+                                type="number"
+                                id="milestoneTarget"
+                                min="1"
+                                step="1"
+                                placeholder="20"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="milestoneUnit">
+                                Unit
+                            </label>
+
+                            <select id="milestoneUnit">
+                                <option value="workouts">Workouts</option>
+                                <option value="days">Days</option>
+                                <option value="miles">Miles</option>
+                                <option value="minutes">Minutes</option>
+                                <option value="repetitions">Repetitions</option>
+                                <option value="sessions">Sessions</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="createMilestoneBtn">
+                        Create Milestone
+                    </button>
                 </form>
+            </div>
 
-                <p id="profileMessage" role="status" aria-live="polite"></p>
-            </section>
+            <p
+                id="milestoneMessage"
+                role="status"
+                aria-live="polite"
+            ></p>
 
-            <hr>
-
-            <section>
-            <section id="exerciseLibrarySection">
-                <h2>Exercise Library</h2>
-
-                <label for="typeFilter">Type:</label>
-                <select id="typeFilter">
-                    <option value="">All</option>
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                    <option value="Flexibility">Flexibility</option>
-                </select>
-
-                <label for="locationFilter">Location:</label>
-                <select id="locationFilter">
-                    <option value="">Any</option>
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                    <option value="Outdoors">Outdoors</option>
-                </select>
-
-                <button id="loadExercises" type="button">Load Exercises</button>
-
-                <div id="exerciseList"></div>
-            </section>
-
-            <hr>
-
-            <section id="workoutPickerSection">
-                
-                <h2>Pick a Workout for Me</h2>
-
-                <label for="workoutType">Type:</label>
-                <select id="workoutType">
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                </select>
-
-                <label for="workoutLocation">Location:</label>
-                <select id="workoutLocation">
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                </select>
-
-                <button id="pickWorkout" type="button">Pick a Workout for Me</button>
-
-                <div id="workoutResults"></div>
-
-                <button id="saveWorkoutBtn" type="button" style="display: none; margin-top: 15px;">Save This Workout</button>
-                <p id="saveMessage" aria-live="polite"></p>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2>Workout Interval Timer</h2>
-
-                <label for="timerDuration">
-                    Interval Duration (seconds):
-                </label>
-
-                <input
-                    type="number"
-                    id="timerDuration"
-                    min="1"
-                    value="30"
-                >
-
-                <h3 id="timerDisplay">00:30</h3>
-
-                <button id="startTimer">
-                    Start
+            <div class="milestone-list-header">
+                <h3>Your Milestones</h3>
+                <button id="refreshMilestones" type="button">
+                    Refresh
                 </button>
+            </div>
 
-                <button id="pauseTimer">
-                    Pause
-                </button>
+            <div id="milestoneList">
+                <p>Loading milestones...</p>
+            </div>
+        </section>
+    </main>
 
-                <button id="resetTimer">
-                    Reset
-                </button>
-
-                <p id="timerMessage"></p>
-            </section>
-        </main>
-
-        <script src="/js/app.js"></script>
-    </body>
-    </html>
+    <script src="/js/app.js"></script>
+    <script src="/js/milestones.js"></script>
+</body>
+</html>
