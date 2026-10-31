@@ -1,0 +1,12 @@
+[
+    {
+        "id": "2f36104b-9bf1-4d1f-938b-2b2747d95a58",
+        "title": "Complete 20 Workouts",
+        "target": 20,
+        "progress": 20,
+        "unit": "workouts",
+        "status": "completed",
+        "created_at": "2026-10-31T03:49:14.057290+00:00",
+        "completed_at": "2026-10-31T04:00:23.130064+00:00"
+    }
+]
