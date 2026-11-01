@@ -1,1 +1,57 @@
-[]
+[
+    {
+        "id": "67259fc7-6025-5682-9066-3ee256c7a120",
+        "date": "2026-10-16",
+        "type": "Strength",
+        "location": "Unknown",
+        "exercises": [],
+        "status": "completed"
+    },
+    {
+        "id": "e1987f3c-e9ab-5cc6-86e8-6798d19252f0",
+        "date": "2026-10-14",
+        "type": "Cardio",
+        "location": "Unknown",
+        "exercises": [],
+        "status": "completed"
+    },
+    {
+        "id": "b708bcc0-2b7e-5ab1-91ab-f4df243a3429",
+        "date": "2026-10-12",
+        "type": "Strength",
+        "location": "Unknown",
+        "exercises": [],
+        "status": "completed"
+    },
+    {
+        "id": "38e0ab3c-973d-5b1b-bb39-12284e6597ef",
+        "date": "2026-10-03",
+        "type": "Cardio",
+        "location": "Unknown",
+        "exercises": [],
+        "status": "completed"
+    },
+    {
+        "id": "975ec8bc-49ad-5113-be6f-430cdc232996",
+        "date": "2026-09-28",
+        "type": "Strength",
+        "location": "Unknown",
+        "exercises": [],
+        "status": "completed"
+    },
+    {
+        "id": "2b7bdb29-35ae-4a2d-8b5d-fb1791d6ca34",
+        "date": "2026-11-01",
+        "completed_at": "2026-11-01T19:46:29.691280+00:00",
+        "status": "completed",
+        "type": "Strength",
+        "location": "Home",
+        "exercises": [
+            "Calf Raises",
+            "Push-Ups",
+            "Glute Bridges",
+            "Squats",
+            "Resistance Band Rows"
+        ]
+    }
+]

@@ -1,146 +1,50 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>myFitness</title>
-
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-
-    <body>
-        <header>
-            <h1>myFitness</h1>
-            <nav>
-            <nav></nav><a href="/history.html">View Workout History</a>
-            <nav>
-        </header>
-
-        <main>
-            <section id="profileSection">
-                <h2>Personal Profile</h2>
-
-                <form id="profileForm">
-                    <label for="profileName">Name:</label>
-                    <input id="profileName" name="name" type="text" required>
-
-                    <label for="profileAge">Age:</label>
-                    <input id="profileAge" name="age" type="number" min="1" step="1">
-
-                    <label for="profileHeight">Height (feet):</label>
-                    <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
-
-                    <label for="profileWeight">Weight:</label>
-                    <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
-
-                    <label for="fitnessGoal">Fitness Goal:</label>
-                    <input id="fitnessGoal" name="fitnessGoal" type="text">
-
-                    <button type="submit" id="saveProfile">Save Profile</button>
-               </form>
-
-<section id="bmiSection">
-    <h3>BMI Calculator</h3>
-    <p>Height is measured in feet and weight is measured in pounds.</p>
-
-    <button type="button" id="calculateBMI">Calculate BMI</button>
-
-    <p id="bmiResult" role="status" aria-live="polite">
-        Enter your height and weight to calculate BMI.
-    </p>
-</section>
-
-<p id="profileMessage" role="status" aria-live="polite"></p>
-            </section>
-
-            <hr>
-
-            <section>
-            <section id="exerciseLibrarySection">
-                <h2>Exercise Library</h2>
-
-                <label for="typeFilter">Type:</label>
-                <select id="typeFilter">
-                    <option value="">All</option>
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                    <option value="Flexibility">Flexibility</option>
-                </select>
-
-                <label for="locationFilter">Location:</label>
-                <select id="locationFilter">
-                    <option value="">Any</option>
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                    <option value="Outdoors">Outdoors</option>
-                </select>
-
-                <button id="loadExercises" type="button">Load Exercises</button>
-
-                <div id="exerciseList"></div>
-            </section>
-
-            <hr>
-
-            <section id="workoutPickerSection">
-                
-                <h2>Pick a Workout for Me</h2>
-
-                <label for="workoutType">Type:</label>
-                <select id="workoutType">
-                    <option value="Strength">Strength</option>
-                    <option value="Cardio">Cardio</option>
-                </select>
-
-                <label for="workoutLocation">Location:</label>
-                <select id="workoutLocation">
-                    <option value="Home">Home</option>
-                    <option value="Gym">Gym</option>
-                </select>
-
-                <button id="pickWorkout" type="button">Pick a Workout for Me</button>
-
-                <div id="workoutResults"></div>
-
-                <button id="saveWorkoutBtn" type="button" style="display: none; margin-top: 15px;">Save This Workout</button>
-                <p id="saveMessage" aria-live="polite"></p>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2>Workout Interval Timer</h2>
-
-                <label for="timerDuration">
-                    Interval Duration (seconds):
-                </label>
-
-                <input
-                    type="number"
-                    id="timerDuration"
-                    min="1"
-                    value="30"
-                >
-
-                <h3 id="timerDisplay">00:30</h3>
-
-                <button id="startTimer">
-                    Start
-                </button>
-
-                <button id="pauseTimer">
-                    Pause
-                </button>
-
-                <button id="resetTimer">
-                    Reset
-                </button>
-
-                <p id="timerMessage"></p>
-            </section>
-        </main>
-
-        <script src="/js/app.js"></script>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | myFitness</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Generated by myFitness five-page restructuring -->
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="brand" href="/">myFitness</a>
+            <nav class="site-nav" aria-label="Main navigation">
+            <a href="/" aria-current="page" class="active">Dashboard</a>
+            <a href="/workouts.html">Workouts</a>
+            <a href="/exercises.html">Exercises</a>
+            <a href="/progress.html">Progress</a>
+            <a href="/profile.html">Profile</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Only summaries and next-step links stay on the dashboard. -->
+        <section class="hero-panel">
+            <p class="eyebrow">YOUR FITNESS OVERVIEW</p>
+            <h1 id="dashboardGreeting">Welcome to myFitness</h1>
+            <p>Review your activity and choose what to do next.</p>
+            <a class="button-link" href="/workouts.html">Start a workout</a>
+        </section>
+        <section aria-labelledby="overviewHeading">
+            <h2 id="overviewHeading">Your activity</h2>
+            <div class="dashboard-stats">
+                <article class="stat-card"><span>This week</span><strong id="dashWeekly">0</strong><small>workouts</small></article>
+                <article class="stat-card"><span>This month</span><strong id="dashMonthly">0</strong><small>workouts</small></article>
+                <article class="stat-card"><span>All time</span><strong id="dashTotal">0</strong><small>completed</small></article>
+                <article class="stat-card"><span>Current streak</span><strong id="dashStreak">0</strong><small>days</small></article>
+            </div>
+        </section>
+        <section class="dashboard-links" aria-label="Quick actions">
+            <article class="feature-panel"><h2>Workouts</h2><p>Generate and complete your next workout.</p><a href="/workouts.html">Open Workouts</a></article>
+            <article class="feature-panel"><h2>Progress &amp; Goals</h2><p id="dashGoals">Loading your milestones...</p><a href="/progress.html">View Progress</a></article>
+            <article class="feature-panel"><h2>Exercise Library</h2><p>Explore exercises by type and location.</p><a href="/exercises.html">Browse Exercises</a></article>
+        </section>
+        <p id="dashboardMessage" role="status" aria-live="polite"></p>
+    </main>
+    <script src="/js/api.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
