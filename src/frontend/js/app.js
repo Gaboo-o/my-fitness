@@ -9,6 +9,8 @@ const pickWorkoutButton = document.getElementById("pickWorkout");
 const workoutResults = document.getElementById("workoutResults");
 const profileForm = document.getElementById("profileForm");
 const profileMessage = document.getElementById("profileMessage");
+const calculateBMIButton = document.getElementById("calculateBMI");
+const bmiResult = document.getElementById("bmiResult");
 
 const timerDurationInput = document.getElementById("timerDuration");
 const timerDisplay = document.getElementById("timerDisplay");
@@ -20,7 +22,6 @@ const timerMessage = document.getElementById("timerMessage");
 let timerInterval = null;
 let remainingSeconds = Number(timerDurationInput.value);
 let isPaused = false;
-
 // -------------------------
 // Personal Profile
 // -------------------------
@@ -80,6 +81,26 @@ profileForm.addEventListener("submit", async (event) => {
         profileMessage.textContent = error.message;
     }
 });
+
+function calculateAndDisplayBMI() {
+    const heightFeet = Number(
+        document.getElementById("profileHeight").value
+    );
+    const weightPounds = Number(
+        document.getElementById("profileWeight").value
+    );
+
+    if (heightFeet <= 0 || weightPounds <= 0) {
+        bmiResult.textContent =
+            "Enter a valid height and weight to calculate BMI.";
+        return;
+    }
+
+    const heightInches = heightFeet * 12;
+    const bmi = (weightPounds * 703) / (heightInches ** 2);
+
+    bmiResult.textContent = `Your BMI is ${bmi.toFixed(1)}.`;
+}
 
 
 // -------------------------
@@ -294,6 +315,8 @@ timerDurationInput.addEventListener("change", () => {
         timerMessage.textContent = "";
     }
 });
+
+   calculateBMIButton.addEventListener("click", calculateAndDisplayBMI);
 
 
 // Set the initial timer display

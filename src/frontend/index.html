@@ -28,7 +28,7 @@
                     <label for="profileAge">Age:</label>
                     <input id="profileAge" name="age" type="number" min="1" step="1">
 
-                    <label for="profileHeight">Height:</label>
+                    <label for="profileHeight">Height (feet):</label>
                     <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
 
                     <label for="profileWeight">Weight:</label>
@@ -38,9 +38,20 @@
                     <input id="fitnessGoal" name="fitnessGoal" type="text">
 
                     <button type="submit" id="saveProfile">Save Profile</button>
-                </form>
+               </form>
 
-                <p id="profileMessage" role="status" aria-live="polite"></p>
+<section id="bmiSection">
+    <h3>BMI Calculator</h3>
+    <p>Height is measured in feet and weight is measured in pounds.</p>
+
+    <button type="button" id="calculateBMI">Calculate BMI</button>
+
+    <p id="bmiResult" role="status" aria-live="polite">
+        Enter your height and weight to calculate BMI.
+    </p>
+</section>
+
+<p id="profileMessage" role="status" aria-live="polite"></p>
             </section>
 
             <hr>
