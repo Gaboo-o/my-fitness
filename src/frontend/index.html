@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,6 @@
     <title>myFitness</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
     <header>
         <h1>myFitness</h1>
@@ -15,12 +13,10 @@
             <a href="/history.html">View Workout History</a>
         </nav>
     </header>
-
     <main>
         <!-- Personal Profile -->
         <section id="profileSection">
             <h2>Personal Profile</h2>
-
             <form id="profileForm">
                 <label for="profileName">Name:</label>
                 <input id="profileName" name="name" type="text" required>
@@ -42,9 +38,7 @@
 
             <p id="profileMessage" role="status" aria-live="polite"></p>
         </section>
-
         <hr>
-
         <!-- Exercise Library -->
         <section id="exerciseLibrarySection">
             <h2>Exercise Library</h2>
@@ -100,14 +94,12 @@
             >
                 Save This Workout
             </button>
-
             <p id="saveMessage" aria-live="polite"></p>
         </section>
-
         <hr>
 
         <!-- Workout Interval Timer -->
-        <section id="timerSection">
+        <section id="workoutTimerSection">
             <h2>Workout Interval Timer</h2>
 
             <label for="timerDuration">
@@ -132,104 +124,15 @@
 
         <hr>
 
-        <!-- Personal Workout Milestones -->
-        <section id="milestonesSection">
-            <h2>Personal Workout Milestones</h2>
+        <!-- Progress Summary -->
+        <section id="progressSection">
+            <h2>Progress Summary</h2>
+            <p>This Week:<strong id="weeklyWorkoutCount">0</strong>workouts</p>
+            <p>This Month:<strong id="monthlyWorkoutCount">0</strong>workouts</p>
 
-            <p>
-                Set personal fitness goals, track your progress,
-                and celebrate your achievements.
-            </p>
+            <button id="refreshProgress" type="button">Refresh Progress</button>
 
-            <div class="milestone-summary">
-                <div class="summary-card">
-                    <h3 id="totalMilestones">0</h3>
-                    <p>Total Milestones</p>
-                </div>
-
-                <div class="summary-card">
-                    <h3 id="activeMilestones">0</h3>
-                    <p>In Progress</p>
-                </div>
-
-                <div class="summary-card">
-                    <h3 id="completedMilestones">0</h3>
-                    <p>Completed</p>
-                </div>
-            </div>
-
-            <div class="milestone-form-container">
-                <h3>Create a New Milestone</h3>
-
-                <form id="milestoneForm">
-                    <div class="milestone-form-fields">
-                        <div class="form-field">
-                            <label for="milestoneTitle">
-                                Milestone Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="milestoneTitle"
-                                placeholder="e.g. Complete 20 Workouts"
-                                maxlength="100"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-field">
-                            <label for="milestoneTarget">
-                                Target
-                            </label>
-
-                            <input
-                                type="number"
-                                id="milestoneTarget"
-                                min="1"
-                                step="1"
-                                placeholder="20"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-field">
-                            <label for="milestoneUnit">
-                                Unit
-                            </label>
-
-                            <select id="milestoneUnit">
-                                <option value="workouts">Workouts</option>
-                                <option value="days">Days</option>
-                                <option value="miles">Miles</option>
-                                <option value="minutes">Minutes</option>
-                                <option value="repetitions">Repetitions</option>
-                                <option value="sessions">Sessions</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="createMilestoneBtn">
-                        Create Milestone
-                    </button>
-                </form>
-            </div>
-
-            <p
-                id="milestoneMessage"
-                role="status"
-                aria-live="polite"
-            ></p>
-
-            <div class="milestone-list-header">
-                <h3>Your Milestones</h3>
-                <button id="refreshMilestones" type="button">
-                    Refresh
-                </button>
-            </div>
-
-            <div id="milestoneList">
-                <p>Loading milestones...</p>
-            </div>
+            <p id="progressMessage" role="status" aria-live="polite"></p>
         </section>
     </main>
 
