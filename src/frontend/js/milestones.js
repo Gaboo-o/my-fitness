@@ -243,12 +243,12 @@
             }
         });
 
-        actions.append(
-            inputLabel,
-            progressInput,
-            updateButton,
-            deleteButton
-        );
+        if (milestone.metric === "total_workouts") {
+            actions.append(makeElement("span", "", "Updated from workout history"));
+        } else {
+            actions.append(inputLabel, progressInput, updateButton);
+        }
+        actions.appendChild(deleteButton);
 
         card.appendChild(actions);
 
@@ -335,7 +335,8 @@
                 body: JSON.stringify({
                     title,
                     target,
-                    unit
+                    unit,
+                    metric: unit === "workouts" ? "total_workouts" : "manual"
                 })
             });
 
@@ -362,6 +363,10 @@
         } finally {
             refreshButton.disabled = false;
         }
+    });
+
+    window.addEventListener("workout-completed", () => {
+        loadMilestones().catch(error => showMessage(error.message, true));
     });
 
     // Load milestones when the page opens.

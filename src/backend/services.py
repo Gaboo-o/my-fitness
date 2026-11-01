@@ -1,4 +1,5 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
+from uuid import uuid4
 from storage import JSONStorage
 
 
@@ -82,7 +83,10 @@ class HistoryService:
 
         # Record the server's local completion date; don't trust client-supplied dates.
         workout = {
+            "id": str(uuid4()),
             "date": date.today().isoformat(),
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+            "status": "completed",
             "type": workout_type.strip(),
             "location": location.strip(),
             "exercises": [e.strip() for e in exercises],
@@ -98,19 +102,41 @@ class ProgressService:
         history = JSONStorage.read_workout_history()
         if history is None:
             return None
+
         today = date.today()
         start_of_week = today - timedelta(days=today.weekday())
-        weekly_count = 0
-        monthly_count = 0
+        complete_dates = []
         for workout in history:
             if not isinstance(workout, dict):
                 continue
+            if workout.get("status", "completed") != "completed":
+                continue
             try:
-                workout_date = datetime.strptime(workout.get("date", ""), "%Y-%m-%d").date()
+                completed_date = date.fromisoformat(workout.get("date", ""))
             except (TypeError, ValueError):
                 continue
-            if start_of_week <= workout_date <= today:
-                weekly_count += 1
-            if workout_date.year == today.year and workout_date.month == today.month and workout_date <= today:
-                monthly_count += 1
-        return {"weeklyCount": weekly_count, "monthlyCount": monthly_count}
+            if completed_date <= today:
+                complete_dates.append(completed_date)
+
+        weekly_count = sum(d >= start_of_week for d in complete_dates)
+        monthly_count = sum(d.year == today.year and d.month == today.month for d in complete_dates)
+        last_seven = [today - timedelta(days=i) for i in range(6, -1, -1)]
+        daily_counts = [
+            {"date": d.isoformat(), "count": complete_dates.count(d)}
+            for d in last_seven
+        ]
+
+        completed_days = set(complete_dates)
+        cursor = today if today in completed_days else today - timedelta(days=1)
+        streak_days = 0
+        while cursor in completed_days:
+            streak_days += 1
+            cursor -= timedelta(days=1)
+
+        return {
+            "weeklyCount": weekly_count,
+            "monthlyCount": monthly_count,
+            "totalCount": len(complete_dates),
+            "streakDays": streak_days,
+            "dailyCounts": daily_counts,
+        }

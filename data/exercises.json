@@ -4,174 +4,324 @@
     "name": "Push-Ups",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Chest"
+    "muscleGroup": "Chest",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 12,
+    "restSeconds": 60,
+    "instructions": "Keep your body straight and lower your chest with control."
   },
   {
     "id": 2,
     "name": "Squats",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 15,
+    "restSeconds": 60,
+    "instructions": "Keep your heels down and bend at the hips and knees."
   },
   {
     "id": 3,
     "name": "Treadmill Run",
     "type": "Cardio",
     "location": "Gym",
-    "muscleGroup": "Full Body"
+    "muscleGroup": "Full Body",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 20,
+    "sets": 1,
+    "reps": 1,
+    "restSeconds": 120,
+    "instructions": "Warm up first; use a comfortable pace."
   },
   {
     "id": 4,
     "name": "Bench Press",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Chest"
+    "muscleGroup": "Chest",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 10,
+    "sets": 4,
+    "reps": 8,
+    "restSeconds": 90,
+    "instructions": "Keep feet grounded and lower the bar with control."
   },
   {
     "id": 5,
     "name": "Pull-Ups",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Back"
+    "muscleGroup": "Back",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 8,
+    "restSeconds": 90,
+    "instructions": "Pull your chin toward the bar without swinging."
   },
   {
     "id": 6,
     "name": "Dumbbell Shoulder Press",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Shoulders"
+    "muscleGroup": "Shoulders",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 10,
+    "restSeconds": 60,
+    "instructions": "Press upward with control and avoid arching the back."
   },
   {
     "id": 7,
     "name": "Tricep Dips",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Arms"
+    "muscleGroup": "Arms",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 12,
+    "restSeconds": 60,
+    "instructions": "Lower slowly with shoulders stable; avoid excessive depth."
   },
   {
     "id": 8,
     "name": "Bicep Curls",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Arms"
+    "muscleGroup": "Arms",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 12,
+    "restSeconds": 60,
+    "instructions": "Keep elbows near your sides and avoid swinging."
   },
   {
     "id": 9,
     "name": "Resistance Band Rows",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Back"
+    "muscleGroup": "Back",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 15,
+    "restSeconds": 45,
+    "instructions": "Pull elbows back while keeping your spine neutral."
   },
   {
     "id": 10,
     "name": "Barbell Back Squats",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 12,
+    "sets": 4,
+    "reps": 8,
+    "restSeconds": 120,
+    "instructions": "Brace your core and keep the bar balanced over your feet."
   },
   {
     "id": 11,
     "name": "Walking Lunges",
     "type": "Strength",
     "location": "Outdoor",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 12,
+    "restSeconds": 60,
+    "instructions": "Step forward and lower with control; keep your torso upright."
   },
   {
     "id": 12,
     "name": "Leg Press",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "beginner",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 10,
+    "restSeconds": 90,
+    "instructions": "Keep your back supported and avoid locking the knees."
   },
   {
     "id": 13,
     "name": "Calf Raises",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "beginner",
+    "estimatedMinutes": 5,
+    "sets": 3,
+    "reps": 20,
+    "restSeconds": 45,
+    "instructions": "Rise onto your toes slowly and lower with control."
   },
   {
     "id": 14,
     "name": "Romanian Deadlifts",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 10,
+    "sets": 3,
+    "reps": 10,
+    "restSeconds": 90,
+    "instructions": "Hinge from the hips with a neutral spine and soft knees."
   },
   {
     "id": 15,
     "name": "Glute Bridges",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "beginner",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 15,
+    "restSeconds": 45,
+    "instructions": "Lift hips until shoulders, hips and knees align."
   },
   {
     "id": 16,
     "name": "Plank",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 5,
+    "sets": 3,
+    "reps": 1,
+    "restSeconds": 60,
+    "instructions": "Brace your core and keep your body in a straight line."
   },
   {
     "id": 17,
     "name": "Crunches",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 5,
+    "sets": 3,
+    "reps": 20,
+    "restSeconds": 45,
+    "instructions": "Lift shoulders slightly using your core rather than pulling your neck."
   },
   {
     "id": 18,
     "name": "Russian Twists",
     "type": "Strength",
     "location": "Home",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 5,
+    "sets": 3,
+    "reps": 20,
+    "restSeconds": 45,
+    "instructions": "Rotate the torso slowly while maintaining balance."
   },
   {
     "id": 19,
     "name": "Cable Woodchoppers",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 12,
+    "restSeconds": 60,
+    "instructions": "Rotate through the torso with control; avoid jerking."
   },
   {
     "id": 20,
     "name": "Hanging Leg Raises",
     "type": "Strength",
     "location": "Gym",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "advanced",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 10,
+    "restSeconds": 60,
+    "instructions": "Raise legs without swinging and keep shoulders engaged."
   },
   {
     "id": 21,
     "name": "Mountain Climbers",
     "type": "Cardio",
     "location": "Home",
-    "muscleGroup": "Core"
+    "muscleGroup": "Core",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 6,
+    "sets": 3,
+    "reps": 30,
+    "restSeconds": 45,
+    "instructions": "Drive knees forward alternately while keeping a stable plank."
   },
   {
     "id": 22,
     "name": "Burpees",
     "type": "Cardio",
     "location": "Home",
-    "muscleGroup": "Full Body"
+    "muscleGroup": "Full Body",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 8,
+    "sets": 3,
+    "reps": 15,
+    "restSeconds": 60,
+    "instructions": "Move through the squat and plank smoothly; modify if needed."
   },
   {
     "id": 23,
     "name": "Jumping Jacks",
     "type": "Cardio",
     "location": "Home",
-    "muscleGroup": "Full Body"
+    "muscleGroup": "Full Body",
+    "difficulty": "beginner",
+    "estimatedMinutes": 5,
+    "sets": 3,
+    "reps": 30,
+    "restSeconds": 30,
+    "instructions": "Jump feet apart and together while moving arms overhead."
   },
   {
     "id": 24,
     "name": "400m Sprint",
     "type": "Cardio",
     "location": "Outdoor",
-    "muscleGroup": "Legs"
+    "muscleGroup": "Legs",
+    "difficulty": "advanced",
+    "estimatedMinutes": 10,
+    "sets": 4,
+    "reps": 1,
+    "restSeconds": 120,
+    "instructions": "Warm up thoroughly; accelerate gradually rather than starting all-out."
   },
   {
     "id": 25,
     "name": "Rowing Machine",
     "type": "Cardio",
     "location": "Gym",
-    "muscleGroup": "Full Body"
+    "muscleGroup": "Full Body",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 15,
+    "sets": 1,
+    "reps": 1,
+    "restSeconds": 120,
+    "instructions": "Push with legs first, then pull with arms; reverse to return."
   }
 ]

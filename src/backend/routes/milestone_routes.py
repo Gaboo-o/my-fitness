@@ -4,6 +4,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 import json
 import uuid
+from services import ProgressService
 
 milestone_bp = Blueprint("milestones", __name__)
 
@@ -37,6 +38,15 @@ def get_milestones():
     """Return all personal workout milestones."""
     try:
         milestones = load_milestones()
+        summary = ProgressService.get_progress_summary()
+        if summary is None:
+            return jsonify({"error": "Unable to load workout history."}), 500
+        for milestone in milestones:
+            if milestone.get("metric") == "total_workouts":
+                milestone["progress"] = summary["totalCount"]
+                milestone["status"] = milestone_status(
+                    milestone["progress"], milestone["target"]
+                )
         return jsonify(milestones), 200
     except (OSError, ValueError):
         return jsonify({"error": "Unable to load milestones."}), 500
@@ -53,6 +63,7 @@ def create_milestone():
     title = data.get("title")
     target = data.get("target")
     unit = data.get("unit", "workouts")
+    metric = data.get("metric", "manual")
 
     if not isinstance(title, str) or not title.strip():
         return jsonify({"error": "Milestone title is required."}), 400
@@ -63,12 +74,18 @@ def create_milestone():
     if not isinstance(unit, str) or not unit.strip():
         return jsonify({"error": "Unit must be a non-empty string."}), 400
 
+    if metric not in ("manual", "total_workouts"):
+        return jsonify({"error": "Unsupported milestone metric."}), 400
+    if metric == "total_workouts" and unit != "workouts":
+        return jsonify({"error": "Automatic workout goals must use workouts."}), 400
+
     milestone = {
         "id": str(uuid.uuid4()),
         "title": title.strip(),
         "target": target,
         "progress": 0,
         "unit": unit.strip(),
+        "metric": metric,
         "status": "in_progress",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "completed_at": None,
@@ -102,6 +119,8 @@ def update_milestone(milestone_id):
 
         for milestone in milestones:
             if milestone["id"] == milestone_id:
+                if milestone.get("metric") == "total_workouts":
+                    return jsonify({"error": "Automatic milestone progress cannot be edited."}), 400
                 milestone["progress"] = progress
                 milestone["status"] = milestone_status(
                     progress, milestone["target"]
