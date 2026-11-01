@@ -1,6 +1,7 @@
 import pytest
 
-from src.backend.app import app, JSONStorage
+from app import app
+from storage import JSONStorage
 
 
 @pytest.fixture
@@ -155,3 +156,46 @@ def test_missing_exercise_dataset_returns_404(client, monkeypatch):
 
     assert response.status_code == 404
     assert "error" in response.get_json()
+
+def test_save_workout_marks_completed(client, monkeypatch):
+    saved = []
+    monkeypatch.setattr(JSONStorage, "append_workout", lambda record: saved.append(record) or True)
+    response = client.post("/api/history", json={
+        "type": "Strength", "location": "Home", "exercises": ["Push-Ups"]
+    })
+    assert response.status_code == 201
+    assert len(saved) == 1
+    assert saved[0]["id"]
+    assert saved[0]["status"] == "completed"
+    assert saved[0]["completed_at"]
+
+
+def test_progress_excludes_uncompleted_workouts(client, monkeypatch):
+    from datetime import date
+    today = date.today().isoformat()
+    monkeypatch.setattr(JSONStorage, "read_workout_history", lambda: [
+        {"date": today, "status": "completed"},
+        {"date": today, "status": "in_progress"},
+    ])
+    response = client.get("/api/progress")
+    assert response.status_code == 200
+    result = response.get_json()
+    assert result["totalCount"] == 1
+    assert result["weeklyCount"] == 1
+    assert len(result["dailyCounts"]) == 7
+
+
+def test_automatic_milestone_uses_completed_history(client, monkeypatch, tmp_path):
+    import routes.milestone_routes as milestones
+    from datetime import date
+    monkeypatch.setattr(milestones, "DATA_FILE", tmp_path / "milestones.json")
+    monkeypatch.setattr(JSONStorage, "read_workout_history", lambda: [
+        {"date": date.today().isoformat(), "status": "completed"}
+    ])
+    response = client.post("/api/milestones", json={
+        "title": "First workout", "target": 1, "unit": "workouts", "metric": "total_workouts"
+    })
+    assert response.status_code == 201
+    result = client.get("/api/milestones").get_json()
+    assert result[0]["progress"] == 1
+    assert result[0]["status"] == "completed"

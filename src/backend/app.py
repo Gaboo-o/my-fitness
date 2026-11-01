@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 
 from routes.exercise_routes import exercise_bp
 from routes.profile_routes import profile_bp
+from routes.milestone_routes import milestone_bp
 from routes.progress_routes import progress_bp
 from routes.history_routes import history_bp
 
@@ -12,6 +13,7 @@ FRONTEND_DIR = BASE_DIR.parent / "frontend"
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 app.register_blueprint(exercise_bp)
 app.register_blueprint(profile_bp)
+app.register_blueprint(milestone_bp)
 app.register_blueprint(progress_bp)
 app.register_blueprint(history_bp)
 
