@@ -4,6 +4,11 @@ const workoutResults = document.getElementById("workoutResults");
 const saveWorkoutButton = document.getElementById("saveWorkoutBtn");
 const saveMessage = document.getElementById("saveMessage");
 let selectedWorkout = null;
+const loadCustomExercisesButton = document.getElementById("loadCustomExercises");
+const customExerciseList =document.getElementById("customExerciseList");
+const useCustomWorkoutButton = document.getElementById("useCustomWorkout");
+const customWorkoutMessage = document.getElementById("customWorkoutMessage");
+let customExercises = [];
 const timerDurationInput = document.getElementById("timerDuration");
 const timerDisplay = document.getElementById("timerDisplay");
 const startTimerButton = document.getElementById("startTimer");
@@ -28,7 +33,109 @@ fetch(API.profile)
     .then(profile => { savedFitnessGoal = String(profile.fitnessGoal || ""); })
     .catch(error => console.warn(error.message));
 
-// Generate a workout using the selected filters.
+loadCustomExercisesButton.addEventListener("click", async () => {
+    const type = document.getElementById("customWorkoutType").value;
+    const location = document.getElementById("customWorkoutLocation").value;
+
+    customWorkoutMessage.textContent = "Loading exercises...";
+    customExerciseList.innerHTML = "";
+    useCustomWorkoutButton.disabled = true;
+
+    try {
+        customExercises = await fetchExercises(type, location);
+
+        if (customExercises.length === 0) {
+            customWorkoutMessage.textContent =
+                "No exercises match your selections.";
+            return;
+        }
+
+        customExercises.forEach((exercise) => {
+            const label = document.createElement("label");
+            label.style.display = "block";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "custom-exercise";
+            checkbox.value = exercise.id;
+
+            checkbox.addEventListener("change", () => {
+                useCustomWorkoutButton.disabled =
+                    !customExerciseList.querySelector(
+                        ".custom-exercise:checked"
+                    );
+            });
+
+            label.append(
+                checkbox,
+                ` ${exercise.name}`
+            );
+
+            customExerciseList.appendChild(label);
+        });
+
+        customWorkoutMessage.textContent =
+            "Select the exercises you want in your workout.";
+
+    } catch (error) {
+        customWorkoutMessage.textContent = error.message;
+    }
+});
+
+//enter a custom workout
+
+useCustomWorkoutButton.addEventListener("click", () => {
+    const selectedIds = [
+        ...customExerciseList.querySelectorAll(
+            ".custom-exercise:checked"
+        ),
+    ].map((checkbox) => Number(checkbox.value));
+
+    const selectedExercises = customExercises.filter(
+        (exercise) => selectedIds.includes(exercise.id)
+    );
+
+    if (selectedExercises.length === 0) {
+        customWorkoutMessage.textContent =
+            "Select at least one exercise.";
+        return;
+    }
+
+    selectedWorkout = {
+        type: document.getElementById("customWorkoutType").value,
+        location: document.getElementById("customWorkoutLocation").value,
+        exercises: selectedExercises.map(
+            (exercise) => exercise.name
+        ),
+    };
+
+    workoutResults.innerHTML =
+        "<h3>Your Custom Workout</h3>";
+
+    selectedExercises.forEach((exercise) => {
+        const row = document.createElement("div");
+        renderExercise(row, exercise, "h4");
+
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+
+        checkbox.type = "checkbox";
+        checkbox.className = "workout-done";
+        checkbox.addEventListener("change", updateCompleteButton);
+
+        label.append(checkbox, " Completed");
+        row.appendChild(label);
+        workoutResults.appendChild(row);
+    });
+
+    saveWorkoutButton.style.display = "inline-block";
+    saveWorkoutButton.disabled = true;
+    saveMessage.textContent =
+        "Complete every exercise before saving.";
+});
+
+
+    // Generate a workout using the selected filters.
 
 pickWorkoutButton.addEventListener(
     "click",
