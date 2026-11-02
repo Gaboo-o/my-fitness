@@ -98,3 +98,226 @@ FlaskAPI-->Frontend:Return history as JSON
 Frontend->Frontend:Calculate weekly and monthly workout counts
 Frontend-->User:Display workout history
 Frontend-->User:Display progress summary
+
+
+title Weight Tracking - Record and View Weight
+
+actor User
+participant Frontend
+participant FlaskAPI
+participant WeightService
+participant JSONStorage
+
+User->Frontend: Open Weight Tracking page
+Frontend->FlaskAPI: Request weight history
+FlaskAPI->WeightService: Get weight entries
+WeightService->JSONStorage: Read saved weights
+WeightService<--JSONStorage: Return weight entries
+FlaskAPI<--WeightService: Return weight history
+Frontend<--FlaskAPI: Weight data
+User<--Frontend: Display weight history
+
+User->Frontend: Enter weight and date
+User->Frontend: Click Save Weight
+Frontend->FlaskAPI: Submit weight entry
+FlaskAPI->WeightService: Validate weight entry
+
+alt Valid entry
+    WeightService->JSONStorage: Save weight entry
+    WeightService<--JSONStorage: Confirm save
+    FlaskAPI<--WeightService: Entry saved
+    Frontend<--FlaskAPI: Success response
+    User<--Frontend: Display updated weight history
+else Invalid entry
+    FlaskAPI<--WeightService: Validation error
+    Frontend<--FlaskAPI: Error response
+    User<--Frontend: Display error message
+end
+
+
+title Motivation - Personal Milestones
+
+actor User
+participant Frontend
+participant FlaskAPI
+participant MilestoneService
+participant HistoryService
+participant JSONStorage
+
+User->Frontend: Open Milestones page
+Frontend->FlaskAPI: Request milestones
+FlaskAPI->MilestoneService: Get user milestones
+MilestoneService->JSONStorage: Read milestones
+MilestoneService<--JSONStorage: Return milestones
+FlaskAPI<--MilestoneService: Milestone data
+Frontend<--FlaskAPI: Return milestones
+User<--Frontend: Display milestone progress
+
+User->Frontend: Enter milestone goal and target
+User->Frontend: Click Create Milestone
+Frontend->FlaskAPI: Submit milestone
+FlaskAPI->MilestoneService: Create milestone
+MilestoneService->JSONStorage: Save milestone
+MilestoneService<--JSONStorage: Confirm save
+FlaskAPI<--MilestoneService: Milestone created
+Frontend<--FlaskAPI: Success response
+User<--Frontend: Display new milestone
+
+User->Frontend: Complete a workout
+Frontend->FlaskAPI: Submit completed workout
+FlaskAPI->HistoryService: Save workout
+HistoryService->JSONStorage: Update workout history
+HistoryService<--JSONStorage: Confirm save
+FlaskAPI<--HistoryService: Workout saved
+
+FlaskAPI->MilestoneService: Refresh milestone progress
+MilestoneService->JSONStorage: Read history and milestones
+MilestoneService<--JSONStorage: Return data
+MilestoneService->MilestoneService: Calculate progress
+FlaskAPI<--MilestoneService: Updated milestone
+Frontend<--FlaskAPI: Updated progress
+
+alt Milestone completed
+    User<--Frontend: Display achievement notification
+else Milestone in progress
+    User<--Frontend: Display current progress
+end
+
+
+title Authentication - Sign Up and Login
+
+actor User
+participant Frontend
+participant FlaskAPI
+participant AuthService
+participant JSONStorage
+
+note over User,JSONStorage: User Registration
+
+User->Frontend: Open Sign Up page
+User->Frontend: Enter account information
+User->Frontend: Click Sign Up
+Frontend->FlaskAPI: Submit registration request
+FlaskAPI->AuthService: Validate registration
+AuthService->JSONStorage: Check existing accounts
+AuthService<--JSONStorage: Return account lookup
+
+alt New valid account
+    AuthService->JSONStorage: Save new account
+    AuthService<--JSONStorage: Confirm save
+    FlaskAPI<--AuthService: Registration successful
+    Frontend<--FlaskAPI: Success response
+    User<--Frontend: Display account created
+else Invalid or duplicate account
+    FlaskAPI<--AuthService: Registration failed
+    Frontend<--FlaskAPI: Error response
+    User<--Frontend: Display registration error
+end
+
+note over User,JSONStorage: User Login
+
+User->Frontend: Open Login page
+User->Frontend: Enter username and password
+User->Frontend: Click Login
+Frontend->FlaskAPI: Submit login request
+FlaskAPI->AuthService: Verify credentials
+AuthService->JSONStorage: Retrieve account
+AuthService<--JSONStorage: Return account data
+
+alt Valid credentials
+    FlaskAPI<--AuthService: Authentication successful
+    Frontend<--FlaskAPI: Login successful
+    User<--Frontend: Redirect to dashboard
+else Invalid credentials
+    FlaskAPI<--AuthService: Authentication failed
+    Frontend<--FlaskAPI: Error response
+    User<--Frontend: Display login error
+end
+
+
+title BMI Tracking - Calculate Body Mass Index
+
+actor User
+participant Frontend
+participant FlaskAPI
+participant BMIService
+participant ProfileService
+participant WeightService
+participant JSONStorage
+
+User->Frontend: Open BMI Calculator
+User->Frontend: Click Calculate BMI
+Frontend->FlaskAPI: Request BMI calculation
+FlaskAPI->BMIService: Calculate BMI
+
+BMIService->ProfileService: Get stored height
+ProfileService->JSONStorage: Read user profile
+ProfileService<--JSONStorage: Return height
+BMIService<--ProfileService: Height value
+
+BMIService->WeightService: Get latest weight
+WeightService->JSONStorage: Read weight history
+WeightService<--JSONStorage: Return weight entries
+BMIService<--WeightService: Latest weight value
+
+alt Valid height and weight available
+    BMIService->BMIService: Convert height to meters
+    BMIService->BMIService: Convert weight to kilograms
+    note over BMIService: BMI = weight / (height * height)
+    BMIService->BMIService: Calculate BMI
+    FlaskAPI<--BMIService: Return BMI result
+    Frontend<--FlaskAPI: BMI value
+    User<--Frontend: Display BMI result
+else Missing height or weight
+    FlaskAPI<--BMIService: Missing measurement error
+    Frontend<--FlaskAPI: Error response
+    User<--Frontend: Request missing measurements
+end
+
+
+title Custom Workouts - Create Personalized Workout
+
+actor User
+participant Frontend
+participant FlaskAPI
+participant ExerciseService
+participant CustomWorkoutService
+participant JSONStorage
+
+User->Frontend: Open Custom Workout Builder
+Frontend->FlaskAPI: Request exercise library
+FlaskAPI->ExerciseService: Get available exercises
+ExerciseService->JSONStorage: Read exercise data
+ExerciseService<--JSONStorage: Return exercise list
+FlaskAPI<--ExerciseService: Available exercises
+Frontend<--FlaskAPI: Return exercise list
+User<--Frontend: Display exercise library
+
+User->Frontend: Browse and select exercises
+User->Frontend: Enter custom workout name
+User->Frontend: Configure sets and repetitions
+User->Frontend: Click Save Workout
+
+Frontend->FlaskAPI: Submit custom workout
+FlaskAPI->CustomWorkoutService: Validate workout details
+
+alt Valid custom workout
+    CustomWorkoutService->JSONStorage: Save custom workout
+    CustomWorkoutService<--JSONStorage: Confirm save
+    FlaskAPI<--CustomWorkoutService: Workout created
+    Frontend<--FlaskAPI: Success response
+    User<--Frontend: Display saved custom workout
+else Missing required information
+    FlaskAPI<--CustomWorkoutService: Validation error
+    Frontend<--FlaskAPI: Error response
+    User<--Frontend: Display missing information
+end
+
+User->Frontend: View saved custom workouts
+Frontend->FlaskAPI: Request custom workouts
+FlaskAPI->CustomWorkoutService: Get saved workouts
+CustomWorkoutService->JSONStorage: Read custom workouts
+CustomWorkoutService<--JSONStorage: Return saved workouts
+FlaskAPI<--CustomWorkoutService: Return workout list
+Frontend<--FlaskAPI: Saved workout data
+User<--Frontend: Display custom workouts
