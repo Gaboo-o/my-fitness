@@ -2,6 +2,7 @@ import pytest
 
 from app import app
 from storage import JSONStorage
+from services import ProfileService
 
 
 @pytest.fixture
@@ -199,3 +200,54 @@ def test_automatic_milestone_uses_completed_history(client, monkeypatch, tmp_pat
     result = client.get("/api/milestones").get_json()
     assert result[0]["progress"] == 1
     assert result[0]["status"] == "completed"
+
+def test_get_profile(client, monkeypatch):
+    profile = {
+        "name": "Test User",
+        "age": 25,
+        "height": 5.7,
+        "weight": 150,
+        "fitnessGoal": "General fitness",
+    }
+
+    monkeypatch.setattr(
+        ProfileService,
+        "get_profile",
+        lambda: profile
+    )
+
+    response = client.get("/api/profile")
+
+    assert response.status_code == 200
+    assert response.get_json() == profile
+
+
+def test_update_profile(client, monkeypatch):
+    profile = {
+        "name": "Test User",
+        "age": 25,
+        "height": 5.7,
+        "weight": 150,
+        "fitnessGoal": "General fitness",
+    }
+
+    monkeypatch.setattr(
+        ProfileService,
+        "validate_and_save_profile",
+        lambda data: (data, None)
+    )
+
+    response = client.put("/api/profile", json=profile)
+
+    assert response.status_code == 200
+    assert response.get_json() == {
+        "message": "Profile saved successfully.",
+        "profile": profile,
+    }
+
+
+def test_update_profile_requires_json(client):
+    response = client.put("/api/profile")
+
+    assert response.status_code == 400
+    assert "error" in response.get_json()
