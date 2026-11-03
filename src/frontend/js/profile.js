@@ -1,6 +1,8 @@
 // Profile page: load existing preferences and save form changes.
 const profileForm = document.getElementById("profileForm");
 const profileMessage = document.getElementById("profileMessage");
+const calculateBMIButton = document.getElementById("calculateBMI");
+const bmiResult = document.getElementById("bmiResult");
 
 async function loadProfile() {
     try {
@@ -90,4 +92,29 @@ profileForm.addEventListener("submit", async (event) => {
     }
 });
 
+function calculateAndDisplayBMI() {
+    const heightFeet = Number(
+        document.getElementById("profileHeight").value
+    );
+
+    const weightPounds = Number(
+        document.getElementById("profileWeight").value
+    );
+
+    if (heightFeet <= 0 || weightPounds <= 0) {
+        bmiResult.textContent =
+            "Enter a valid height and weight to calculate BMI.";
+        return;
+    }
+
+    const heightInches = heightFeet * 12;
+    const bmi = (weightPounds * 703) / (heightInches ** 2);
+
+    bmiResult.textContent = `Your BMI is ${bmi.toFixed(1)}.`;
+}
+
+calculateBMIButton.addEventListener(
+    "click",
+    calculateAndDisplayBMI
+);
 loadProfile();
