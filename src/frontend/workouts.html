@@ -68,6 +68,36 @@
             <p id="saveMessage" aria-live="polite"></p>
         </section>
 
+
+
+        <section id="customWorkoutSection">
+    <h2>Create a Custom Workout</h2>
+
+    <label for="customWorkoutType">Type:</label>
+    <select id="customWorkoutType">
+        <option value="Strength">Strength</option>
+        <option value="Cardio">Cardio</option>
+    </select>
+
+    <label for="customWorkoutLocation">Location:</label>
+    <select id="customWorkoutLocation">
+        <option value="Home">Home</option>
+        <option value="Gym">Gym</option>
+    </select>
+
+    <button id="loadCustomExercises" type="button">
+        Load Exercises
+    </button>
+
+    <div id="customExerciseList"></div>
+
+    <button id="useCustomWorkout" type="button" disabled>
+        Use Selected Exercises
+    </button>
+
+    <p id="customWorkoutMessage" aria-live="polite"></p>
+</section>
+
 <section id="workoutTimerSection">
             <h2>Workout Interval Timer</h2>
 
