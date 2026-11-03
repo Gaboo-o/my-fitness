@@ -6,6 +6,7 @@ from routes.profile_routes import profile_bp
 from routes.milestone_routes import milestone_bp
 from routes.progress_routes import progress_bp
 from routes.history_routes import history_bp
+from routes.auth_routes import auth_bp
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
@@ -16,6 +17,7 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(milestone_bp)
 app.register_blueprint(progress_bp)
 app.register_blueprint(history_bp)
+app.register_blueprint(auth_bp)
 
 @app.route("/")
 def home():
@@ -24,6 +26,10 @@ def home():
 @app.route("/api/health")
 def health():
     return jsonify({"status": "ok"})
+
+@app.route("/login")
+def login_page():
+    return app.send_static_file("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
