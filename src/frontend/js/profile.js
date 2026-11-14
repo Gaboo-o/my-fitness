@@ -101,7 +101,8 @@ function calculateAndDisplayBMI() {
         document.getElementById("profileWeight").value
     );
 
-    if (heightFeet <= 0 || weightPounds <= 0) {
+    if (!Number.isFinite(heightFeet) || !Number.isFinite(weightPounds) ||
+        heightFeet <= 0 || weightPounds <= 0) {
         bmiResult.textContent =
             "Enter a valid height and weight to calculate BMI.";
         return;

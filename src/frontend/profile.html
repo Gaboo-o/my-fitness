@@ -31,10 +31,11 @@
                 <label for="profileAge">Age:</label>
                 <input id="profileAge" name="age" type="number" min="1" step="1">
 
-                <label for="profileHeight">Height (feet):</label>
-                <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
+                <label for="profileHeight">Height (decimal feet):</label>
+                <small id="heightHint">Example: 5.75 means 5 ft 9 in.</small>
+                <input id="profileHeight" name="height" type="number" min="0.01" step="0.01" aria-describedby="heightHint">
 
-                <label for="profileWeight">Weight:</label>
+                <label for="profileWeight">Weight (lb):</label>
                 <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
 
                 <label for="fitnessGoal">Fitness Goal:</label>

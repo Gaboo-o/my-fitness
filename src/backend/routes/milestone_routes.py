@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import json
 import uuid
 from services import ProgressService
+from storage import atomic_write_json
 
 milestone_bp = Blueprint("milestones", __name__)
 
@@ -17,15 +18,15 @@ def load_milestones():
         return []
 
     with open(DATA_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
+        milestones = json.load(file)
+    if not isinstance(milestones, list) or any(not isinstance(item, dict) for item in milestones):
+        raise ValueError("Invalid milestone data")
+    return milestones
 
 
 def save_milestones(milestones):
     """Save milestones to the JSON file."""
-    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    with open(DATA_FILE, "w", encoding="utf-8") as file:
-        json.dump(milestones, file, indent=4)
+    atomic_write_json(DATA_FILE, milestones)
 
 
 def milestone_status(progress, target):

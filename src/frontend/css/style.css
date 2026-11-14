@@ -371,3 +371,14 @@ select {
     .stat-card strong { font-size: 26px; }
     .feature-panel, .content-panel, #profileSection, #exerciseLibrarySection, #workoutPickerSection, #workoutTimerSection, #progressSection { padding: 16px; }
 }
+
+/* Sprint 4: consistent keyboard focus and legible status feedback. */
+:where(button, input, select, a):focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 3px;
+}
+[role="status"], #saveMessage, #timerMessage, #customWorkoutMessage {
+    min-height: 1.4em;
+}
+#heightHint { color: #475569; }
+#historyList .history-card { overflow-wrap: anywhere; }
