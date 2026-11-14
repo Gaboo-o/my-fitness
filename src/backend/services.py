@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta, timezone
+from math import isfinite
 from uuid import uuid4
 from storage import JSONStorage
 
@@ -29,32 +30,53 @@ class ProfileService:
     def validate_and_save_profile(profile_data):
         if not isinstance(profile_data, dict):
             return None, "Profile data must be a JSON object."
-        name = str(profile_data.get("name", "")).strip()
-        fitness_goal = str(profile_data.get("fitnessGoal", "")).strip()
-        if not name:
+
+        name = profile_data.get("name", "")
+        goal = profile_data.get("fitnessGoal", "")
+        if not isinstance(name, str) or not name.strip():
             return None, "Name is required."
+        if goal is None:
+            goal = ""
+        if not isinstance(goal, str):
+            return None, "Fitness goal must be text."
+
         age = profile_data.get("age")
-        height = profile_data.get("height")
-        weight = profile_data.get("weight")
-        try:
-            age = int(age) if age not in (None, "") else None
-            if age is not None and age <= 0:
-                raise ValueError
-        except (TypeError, ValueError):
-            return None, "Age must be a positive whole number."
-        try:
-            height = float(height) if height not in (None, "") else None
-            if height is not None and height <= 0:
-                raise ValueError
-        except (TypeError, ValueError):
-            return None, "Height must be a positive number."
-        try:
-            weight = float(weight) if weight not in (None, "") else None
-            if weight is not None and weight <= 0:
-                raise ValueError
-        except (TypeError, ValueError):
-            return None, "Weight must be a positive number."
-        profile = {"name": name, "age": age, "height": height, "weight": weight, "fitnessGoal": fitness_goal}
+        if age in (None, ""):
+            age = None
+        else:
+            try:
+                # Do not silently truncate a fractional age or accept booleans.
+                if isinstance(age, bool) or (isinstance(age, float) and not age.is_integer()):
+                    raise ValueError
+                if isinstance(age, str) and not age.strip().isdigit():
+                    raise ValueError
+                age = int(age)
+                if age <= 0:
+                    raise ValueError
+            except (TypeError, ValueError, OverflowError):
+                return None, "Age must be a positive whole number."
+
+        values = {}
+        for field, display in (("height", "Height"), ("weight", "Weight")):
+            value = profile_data.get(field)
+            if value in (None, ""):
+                values[field] = None
+                continue
+            try:
+                if isinstance(value, bool):
+                    raise ValueError
+                value = float(value)
+                if not isfinite(value) or value <= 0:
+                    raise ValueError
+            except (TypeError, ValueError, OverflowError):
+                return None, f"{display} must be a positive number."
+            values[field] = value
+
+        profile = {
+            "name": name.strip(), "age": age,
+            "height": values["height"], "weight": values["weight"],
+            "fitnessGoal": goal.strip(),
+        }
         if not JSONStorage.write_profile(profile):
             return None, "Unable to save profile."
         return profile, None

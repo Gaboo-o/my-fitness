@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const [historyResponse, progressResponse] = await Promise.all([
-            fetch("/api/history"),
-            fetch("/api/progress"),
+            fetch(API.history),
+            fetch(API.progress),
         ]);
         if (!historyResponse.ok || !progressResponse.ok) {
             throw new Error("Failed to load workout data.");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const progress = await progressResponse.json();
         if (!Array.isArray(history)) throw new Error("Invalid workout history.");
 
-        totalWorkouts.textContent = history.length;
+        totalWorkouts.textContent = progress.totalCount;
         weeklyWorkouts.textContent = progress.weeklyCount;
         monthlyWorkouts.textContent = progress.monthlyCount;
         historyList.replaceChildren();
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             historyList.textContent = "No workouts completed yet.";
             return;
         }
-        [...history].reverse().forEach(workout => {
+        newestWorkoutsFirst(history).forEach(workout => {
             const item = document.createElement("div");
             item.style.border = "1px solid #ccc";
             item.style.padding = "12px";

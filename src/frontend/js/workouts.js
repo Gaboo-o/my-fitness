@@ -150,6 +150,7 @@ pickWorkoutButton.addEventListener(
                 "workoutLocation"
             ).value;
 
+        pickWorkoutButton.disabled = true;
         selectedWorkout = null;
         saveWorkoutButton.disabled = true;
         saveWorkoutButton.style.display = "none";
@@ -228,6 +229,8 @@ pickWorkoutButton.addEventListener(
 
             workoutResults.textContent =
                 error.message;
+        } finally {
+            pickWorkoutButton.disabled = false;
         }
     }
 );

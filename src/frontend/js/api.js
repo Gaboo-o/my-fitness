@@ -59,3 +59,12 @@ function renderExercise(
 
     container.appendChild(item);
 }
+
+
+// Seeded records may not be in date order; show newest completions first.
+function newestWorkoutsFirst(records) {
+    return [...records].filter(record => record && typeof record === "object").sort((a, b) =>
+        String(b.date || "").localeCompare(String(a.date || "")) ||
+        String(b.completed_at || "").localeCompare(String(a.completed_at || ""))
+    );
+}

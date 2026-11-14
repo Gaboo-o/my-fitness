@@ -30,8 +30,9 @@ async function loadProgressSummary() {
         document.getElementById("workoutStreak").textContent = result.streakDays;
         const chart = document.getElementById("weeklyChart");
         chart.replaceChildren();
-        const maxCount = Math.max(1, ...result.dailyCounts.map(d => d.count));
-        for (const day of result.dailyCounts) {
+        const dailyCounts = Array.isArray(result.dailyCounts) ? result.dailyCounts : [];
+        const maxCount = Math.max(1, ...dailyCounts.map(d => d.count));
+        for (const day of dailyCounts) {
             const column = document.createElement("div");
             column.className = "chart-column";
             const bar = document.createElement("div");
@@ -71,7 +72,7 @@ async function loadWorkoutHistory() {
             list.textContent = "No workouts recorded yet.";
             return;
         }
-        [...history].reverse().forEach(workout => {
+        newestWorkoutsFirst(history).forEach(workout => {
             const card = document.createElement("article");
             card.className = "history-card";
             const title = document.createElement("h3");

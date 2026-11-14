@@ -9,6 +9,8 @@ loadButton.addEventListener("click", async () => {
     const selectedLocation =
         document.getElementById("locationFilter").value;
 
+    loadButton.disabled = true;
+    exerciseList.textContent = "Loading exercises...";
     try {
         const exercises = await fetchExercises(
             selectedType,
@@ -35,6 +37,8 @@ loadButton.addEventListener("click", async () => {
     } catch (error) {
         console.error(error);
         exerciseList.textContent = error.message;
+    } finally {
+        loadButton.disabled = false;
     }
 });
 

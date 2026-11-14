@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout History</title>
+    <title>Workout History | myFitness</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>myFitness - History</h1>
-        <nav><a href="/">Back to Dashboard</a></nav>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="brand" href="/">myFitness</a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="/">Dashboard</a>
+                <a href="/workouts.html">Workouts</a>
+                <a href="/exercises.html">Exercises</a>
+                <a href="/progress.html" aria-current="page" class="active">Progress</a>
+                <a href="/profile.html">Profile</a>
+            </nav>
+        </div>
     </header>
     <main>
-        <section>
+        <div class="page-intro"><h1>Workout History</h1><p>Previously recorded workout sessions.</p></div>
+        <section class="content-panel">
             <h2>Progress Summary</h2>
             <p>Total Completed Workouts: <strong id="totalWorkouts">0</strong></p>
-            <p>Workouts This Week (Monday to Today): <strong id="weeklyWorkouts">0</strong></p>
-            <p>Workouts This Month (Calendar Month): <strong id="monthlyWorkouts">0</strong></p>
+            <p>Workouts This Week: <strong id="weeklyWorkouts">0</strong></p>
+            <p>Workouts This Month: <strong id="monthlyWorkouts">0</strong></p>
         </section>
-        <hr>
-        <section>
+        <section class="content-panel">
             <h2>Workout Log</h2>
-            <div id="historyList"></div>
+            <div id="historyList" aria-live="polite"></div>
         </section>
     </main>
+    <script src="/js/api.js"></script>
     <script src="/js/history.js"></script>
 </body>
 </html>
