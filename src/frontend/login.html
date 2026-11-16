@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - myFitness</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>myFitness</h1>
+        <nav><a href="/">Back to Dashboard</a></nav>
+    </header>
+    <main>
+        <section id="loginSection">
+            <h2>Sign Up / Login</h2>
+            <form id="authForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                
+                <div style="margin-top: 15px;">
+                    <button type="button" id="loginBtn">Login</button>
+                    <button type="button" id="signupBtn">Sign Up</button>
+                </div>
+            </form>
+            <p id="authMessage" aria-live="polite" style="margin-top: 10px; font-weight: bold;"></p>
+        </section>
+    </main>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
