@@ -5,56 +5,50 @@ document.addEventListener("DOMContentLoaded", async () => {
     const monthlyWorkouts = document.getElementById("monthlyWorkouts");
 
     try {
-        const response = await fetch("/api/history");
-        if (!response.ok) throw new Error("Failed to load history data.");
-        
-        const history = await response.json();
-        
-        // Calculate totals, weekly, and monthly counts
+        const [historyResponse, progressResponse] = await Promise.all([
+            fetch("/api/history"),
+            fetch("/api/progress"),
+        ]);
+        if (!historyResponse.ok || !progressResponse.ok) {
+            throw new Error("Failed to load workout data.");
+        }
+        const history = await historyResponse.json();
+        const progress = await progressResponse.json();
+        if (!Array.isArray(history)) throw new Error("Invalid workout history.");
+
         totalWorkouts.textContent = history.length;
-        
-        const now = new Date();
-        let weeklyCount = 0;
-        let monthlyCount = 0;
-
-        history.forEach(workout => {
-            const workoutDate = new Date(workout.date);
-            // Calculate difference in days
-            const diffTime = Math.abs(now - workoutDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            
-            if (diffDays <= 7) weeklyCount++;
-            if (diffDays <= 30) monthlyCount++;
-        });
-
-        weeklyWorkouts.textContent = weeklyCount;
-        monthlyWorkouts.textContent = monthlyCount;
-
-        historyList.innerHTML = "";
-
+        weeklyWorkouts.textContent = progress.weeklyCount;
+        monthlyWorkouts.textContent = progress.monthlyCount;
+        historyList.replaceChildren();
         if (history.length === 0) {
-            historyList.innerHTML = "<p>No workouts completed yet.</p>";
+            historyList.textContent = "No workouts completed yet.";
             return;
         }
-
-        // Display newest workouts first
-        history.reverse().forEach(workout => {
+        [...history].reverse().forEach(workout => {
             const item = document.createElement("div");
             item.style.border = "1px solid #ccc";
             item.style.padding = "12px";
             item.style.marginTop = "12px";
-
-            item.innerHTML = `
-                <h3>${workout.date}</h3>
-                <p><strong>Type:</strong> ${workout.type}</p>
-                <p><strong>Location:</strong> ${workout.location}</p>
-                <p><strong>Exercises:</strong> ${workout.exercises.join(", ")}</p>
-            `;
+            const heading = document.createElement("h3");
+            heading.textContent = workout.date || "Unknown date";
+            item.appendChild(heading);
+            const details = [
+                ["Type", workout.type || workout.workout || "Unknown"],
+                ["Location", workout.location || "Unknown"],
+                ["Exercises", Array.isArray(workout.exercises) ? workout.exercises.join(", ") : "Not recorded"],
+            ];
+            details.forEach(([label, value]) => {
+                const paragraph = document.createElement("p");
+                const strong = document.createElement("strong");
+                strong.textContent = `${label}: `;
+                paragraph.appendChild(strong);
+                paragraph.appendChild(document.createTextNode(value));
+                item.appendChild(paragraph);
+            });
             historyList.appendChild(item);
         });
-
     } catch (error) {
         console.error(error);
-        historyList.innerHTML = "<p>Unable to load workout history.</p>";
+        historyList.textContent = "Unable to load workout history.";
     }
 });

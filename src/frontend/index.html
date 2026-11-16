@@ -11,6 +11,7 @@
 <body>
     <header>
         <h1>myFitness</h1>
+
         <nav>
             <a href="/history.html">View Workout History</a>
         </nav>
@@ -23,24 +24,57 @@
 
             <form id="profileForm">
                 <label for="profileName">Name:</label>
-                <input id="profileName" name="name" type="text" required>
+                <input
+                    id="profileName"
+                    name="name"
+                    type="text"
+                    required
+                >
 
                 <label for="profileAge">Age:</label>
-                <input id="profileAge" name="age" type="number" min="1" step="1">
+                <input
+                    id="profileAge"
+                    name="age"
+                    type="number"
+                    min="1"
+                    step="1"
+                >
 
                 <label for="profileHeight">Height:</label>
-                <input id="profileHeight" name="height" type="number" min="0.1" step="0.1">
+                <input
+                    id="profileHeight"
+                    name="height"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                >
 
                 <label for="profileWeight">Weight:</label>
-                <input id="profileWeight" name="weight" type="number" min="0.1" step="0.1">
+                <input
+                    id="profileWeight"
+                    name="weight"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                >
 
                 <label for="fitnessGoal">Fitness Goal:</label>
-                <input id="fitnessGoal" name="fitnessGoal" type="text">
+                <input
+                    id="fitnessGoal"
+                    name="fitnessGoal"
+                    type="text"
+                >
 
-                <button type="submit" id="saveProfile">Save Profile</button>
+                <button type="submit" id="saveProfile">
+                    Save Profile
+                </button>
             </form>
 
-            <p id="profileMessage" role="status" aria-live="polite"></p>
+            <p
+                id="profileMessage"
+                role="status"
+                aria-live="polite"
+            ></p>
         </section>
 
         <hr>
@@ -65,7 +99,10 @@
                 <option value="Outdoors">Outdoors</option>
             </select>
 
-            <button id="loadExercises" type="button">Load Exercises</button>
+            <button id="loadExercises" type="button">
+                Load Exercises
+            </button>
+
             <div id="exerciseList"></div>
         </section>
 
@@ -107,7 +144,7 @@
         <hr>
 
         <!-- Workout Interval Timer -->
-        <section id="timerSection">
+        <section id="workoutTimerSection">
             <h2>Workout Interval Timer</h2>
 
             <label for="timerDuration">
@@ -123,11 +160,48 @@
 
             <h3 id="timerDisplay">00:30</h3>
 
-            <button id="startTimer" type="button">Start</button>
-            <button id="pauseTimer" type="button">Pause</button>
-            <button id="resetTimer" type="button">Reset</button>
+            <button id="startTimer" type="button">
+                Start
+            </button>
+
+            <button id="pauseTimer" type="button">
+                Pause
+            </button>
+
+            <button id="resetTimer" type="button">
+                Reset
+            </button>
 
             <p id="timerMessage" aria-live="polite"></p>
+        </section>
+
+        <hr>
+
+        <!-- Progress Summary -->
+        <section id="progressSection">
+            <h2>Progress Summary</h2>
+
+            <p>
+                This Week:
+                <strong id="weeklyWorkoutCount">0</strong>
+                workouts
+            </p>
+
+            <p>
+                This Month:
+                <strong id="monthlyWorkoutCount">0</strong>
+                workouts
+            </p>
+
+            <button id="refreshProgress" type="button">
+                Refresh Progress
+            </button>
+
+            <p
+                id="progressMessage"
+                role="status"
+                aria-live="polite"
+            ></p>
         </section>
 
         <hr>
@@ -141,6 +215,7 @@
                 and celebrate your achievements.
             </p>
 
+            <!-- Milestone Summary -->
             <div class="milestone-summary">
                 <div class="summary-card">
                     <h3 id="totalMilestones">0</h3>
@@ -158,11 +233,13 @@
                 </div>
             </div>
 
+            <!-- Create Milestone Form -->
             <div class="milestone-form-container">
                 <h3>Create a New Milestone</h3>
 
                 <form id="milestoneForm">
                     <div class="milestone-form-fields">
+
                         <div class="form-field">
                             <label for="milestoneTitle">
                                 Milestone Title
@@ -206,23 +283,33 @@
                                 <option value="sessions">Sessions</option>
                             </select>
                         </div>
+
                     </div>
 
-                    <button type="submit" id="createMilestoneBtn">
+                    <button
+                        type="submit"
+                        id="createMilestoneBtn"
+                    >
                         Create Milestone
                     </button>
                 </form>
             </div>
 
+            <!-- Milestone Messages -->
             <p
                 id="milestoneMessage"
                 role="status"
                 aria-live="polite"
             ></p>
 
+            <!-- Milestone List -->
             <div class="milestone-list-header">
                 <h3>Your Milestones</h3>
-                <button id="refreshMilestones" type="button">
+
+                <button
+                    id="refreshMilestones"
+                    type="button"
+                >
                     Refresh
                 </button>
             </div>
@@ -233,7 +320,10 @@
         </section>
     </main>
 
+    <!-- Application JavaScript -->
     <script src="/js/app.js"></script>
+
+    <!-- Personal Workout Milestones JavaScript -->
     <script src="/js/milestones.js"></script>
 </body>
 </html>
