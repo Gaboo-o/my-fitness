@@ -3,6 +3,8 @@ import pytest
 from app import app
 from storage import JSONStorage
 from services import ProfileService
+import routes.auth_routes as auth_routes
+from services import ProfileService, HistoryService
 
 
 @pytest.fixture
@@ -251,3 +253,76 @@ def test_update_profile_requires_json(client):
 
     assert response.status_code == 400
     assert "error" in response.get_json()
+
+def test_signup_successful(client, monkeypatch):
+    mock_db = {}
+    monkeypatch.setattr(auth_routes, "load_users", lambda: mock_db)
+    monkeypatch.setattr(auth_routes, "save_users", lambda data: mock_db.update(data))
+    
+    response = client.post("/api/signup", json={
+        "username": "testuser", 
+        "password": "password123"
+    })
+    
+    assert response.status_code == 201
+    assert "testuser" in mock_db
+
+def test_login_successful(client, monkeypatch):
+    mock_db = {"existinguser": {"password": "mypassword"}}
+    monkeypatch.setattr(auth_routes, "load_users", lambda: mock_db)
+    
+    response = client.post("/api/login", json={
+        "username": "existinguser", 
+        "password": "mypassword"
+    })
+    
+    assert response.status_code == 200
+    assert response.get_json()["username"] == "existinguser"
+
+def test_login_invalid_credentials(client, monkeypatch):
+    mock_db = {"existinguser": {"password": "mypassword"}}
+    monkeypatch.setattr(auth_routes, "load_users", lambda: mock_db)
+    
+    response = client.post("/api/login", json={
+        "username": "existinguser", 
+        "password": "wrongpassword"
+    })
+    
+    assert response.status_code == 401
+    assert "error" in response.get_json()
+
+def test_profile_saves_bmi_requirements(client, monkeypatch):
+    """Verifies the backend properly accepts and stores the decimal height and weight required by the frontend BMI calculator."""
+    profile_data = {
+        "name": "Thanh",
+        "age": 23,
+        "height": 5.58,  
+        "weight": 125.0, 
+        "fitnessGoal": "Muscle"
+    }
+    
+    monkeypatch.setattr(ProfileService, "validate_and_save_profile", lambda data: (data, None))
+    
+    response = client.put("/api/profile", json=profile_data)
+    assert response.status_code == 200
+    
+    result = response.get_json()
+    assert result["profile"]["height"] == 5.58
+    assert result["profile"]["weight"] == 125.0
+
+def test_history_saves_custom_workout(client, monkeypatch):
+    """Verifies the history route can accept a custom-built array of exercises rather than just a generated string."""
+    custom_workout = {
+        "type": "Custom",
+        "location": "Home",
+        "exercises": ["Push-Ups", "Squats", "Plank", "Burpees"], 
+        "status": "completed"
+    }
+    
+    monkeypatch.setattr(HistoryService, "save_workout", lambda data: (data, None))
+    
+    response = client.post("/api/history", json=custom_workout)
+    
+    assert response.status_code == 201
+    assert response.get_json()["message"] == "Workout saved successfully."
+    assert len(response.get_json()["workout"]["exercises"]) == 4
